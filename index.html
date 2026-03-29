@@ -33,13 +33,12 @@
     .header-logo { font-size:1.6rem;flex-shrink:0; }
     .club-name { font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:800;letter-spacing:.06em;color:#fff;text-transform:uppercase; }
     .form-sub { font-size:.72rem;color:rgba(255,255,255,.6); }
-    .progress-wrap { background:var(--navy2);padding:.5rem 1.25rem .65rem; }
     .progress-meta { display:flex;justify-content:space-between;font-size:.7rem;color:rgba(255,255,255,.65);margin-bottom:.4rem; }
     .progress-track { height:5px;background:rgba(255,255,255,.18);border-radius:3px; }
     .progress-fill { height:100%;background:var(--red);border-radius:3px;transition:width .45s cubic-bezier(.4,0,.2,1); }
 
     /* layout */
-    .page-wrap { max-width:600px;margin:0 auto;padding:1.1rem .9rem 5rem; }
+    .page-wrap { max-width:min(900px, 95%);margin:0 auto;padding:1.1rem .9rem 5rem; }
     .card { background:#fff;border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.07),0 6px 24px rgba(0,0,0,.07);overflow:hidden; }
 
     /* step header */
@@ -137,18 +136,18 @@
 <header class="app-header">
   <div class="header-inner">
     <div class="header-logo">🥋</div>
-    <div>
+    <div style="flex:1;min-width:0;">
       <div class="club-name">EJT Bruges</div>
       <div class="form-sub">Dossier d'adhésion — Saison 2026-2027</div>
     </div>
-  </div>
-  <div class="progress-wrap">
-    <div class="progress-meta">
-      <span id="prog-label">Étape 1 sur 10</span>
-      <span id="prog-pct">10%</span>
-    </div>
-    <div class="progress-track">
-      <div class="progress-fill" id="prog-fill" style="width:10%"></div>
+    <div style="flex:2;min-width:0;padding-left:1.5rem;">
+      <div class="progress-meta" style="margin-bottom:.4rem;">
+        <span id="prog-label">Étape 1 sur 10</span>
+        <span id="prog-pct">10%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="prog-fill" style="width:10%"></div>
+      </div>
     </div>
   </div>
 </header>

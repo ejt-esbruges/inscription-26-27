@@ -1,704 +1,958 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Dossier d'adhésion EJT Bruges 2026-2027</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --navy:   #0b1f47;
-      --navy2:  #132a5e;
-      --red:    #cc2418;
-      --red-bg: #fdf2f2;
-      --bg:     #edf0f5;
-      --border: #dde3ee;
-      --muted:  #64748b;
-      --text:   #0f172a;
-      --ok:     #16a34a;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100dvh; }
+	<!DOCTYPE html>
+	<html class="light" lang="fr">
+	<head>
+	<meta charset="utf-8"/>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+	<title>EJT BRUGES</title>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+	<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+	<script id="tailwind-config">
+	  tailwind.config = {
+		darkMode: "class",
+		theme: {
+		  extend: {
+			"colors": {
+			  "background": "#f9f9f9",
+			  "on-primary": "#ffffff",
+			  "outline": "#787681",
+			  "error": "#ba1a1a",
+			  "on-error-container": "#93000a",
+			  "secondary-container": "#d93630",
+			  "secondary-fixed-dim": "#ffb4ab",
+			  "surface-container": "#eeeeee",
+			  "primary-container": "#2d2966",
+			  "on-secondary-fixed-variant": "#93000b",
+			  "on-tertiary-fixed-variant": "#653e12",
+			  "secondary": "#b51a1b",
+			  "tertiary-fixed-dim": "#f5bb85",
+			  "inverse-surface": "#2f3131",
+			  "tertiary-container": "#4c2900",
+			  "tertiary-fixed": "#ffdcbf",
+			  "secondary-fixed": "#ffdad6",
+			  "inverse-on-surface": "#f1f1f1",
+			  "surface-bright": "#f9f9f9",
+			  "on-tertiary": "#ffffff",
+			  "surface": "#f9f9f9",
+			  "on-background": "#1a1c1c",
+			  "on-error": "#ffffff",
+			  "outline-variant": "#c8c5d1",
+			  "surface-container-lowest": "#ffffff",
+			  "primary-fixed-dim": "#c4c0ff",
+			  "surface-container-high": "#e8e8e8",
+			  "on-primary-fixed-variant": "#433f7d",
+			  "primary": "#171150",
+			  "on-surface-variant": "#474650",
+			  "tertiary": "#2e1700",
+			  "on-secondary": "#ffffff",
+			  "surface-tint": "#5b5797",
+			  "surface-container-low": "#f3f3f3",
+			  "on-tertiary-fixed": "#2d1600",
+			  "on-primary-fixed": "#16104f",
+			  "surface-variant": "#e2e2e2",
+			  "on-surface": "#1a1c1c",
+			  "on-tertiary-container": "#c48f5c",
+			  "on-primary-container": "#9692d6",
+			  "surface-dim": "#dadada",
+			  "error-container": "#ffdad6",
+			  "surface-container-highest": "#e2e2e2",
+			  "on-secondary-fixed": "#410002",
+			  "inverse-primary": "#c4c0ff",
+			  "primary-fixed": "#e3dfff",
+			  "on-secondary-container": "#fffbff"
+			},
+			"borderRadius": {
+			  "DEFAULT": "0.125rem",
+			  "lg": "0.25rem",
+			  "xl": "0.5rem",
+			  "full": "0.75rem"
+			},
+			"fontFamily": {
+			  "headline": ["Space Grotesk"],
+			  "body": ["Inter"],
+			  "label": ["Space Grotesk"]
+			}
+		  }
+		}
+	  }
+	</script>
+	<style>
+	  .material-symbols-outlined {
+		font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+	  }
+	  .ma-spacing { padding: clamp(2rem, 8vw, 8rem); }
+	  .judo-belt-accent { border-left-width: 4px; }
+	  .dojo-gradient {
+		background: radial-gradient(circle at top right, #2d2966 0%, #171150 100%);
+	  }
+	  .no-scrollbar::-webkit-scrollbar { display: none; }
+	  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+	  body { font-family: 'Inter', sans-serif; }
+	  h1, h2, h3, .label-technical { font-family: 'Space Grotesk', sans-serif; }
 
-    /* offline */
-    #offline-bar { position:fixed;top:0;left:0;right:0;z-index:200;background:var(--red);color:#fff;text-align:center;padding:.5rem 1rem;font-size:.8rem;font-weight:600;transform:translateY(-100%);transition:transform .3s; }
-    #offline-bar.show { transform:translateY(0); }
+	  /* ── SPA ── */
+	  .page-section { display: none; }
+	  .page-section.active {
+		display: block;
+		animation: pageFadeIn 0.3s ease forwards;
+	  }
+	  @keyframes pageFadeIn {
+		from { opacity: 0; transform: translateY(6px); }
+		to   { opacity: 1; transform: translateY(0); }
+	  }
 
-    /* sticky header */
-    .app-header { position:sticky;top:0;z-index:100;background:var(--navy);box-shadow:0 2px 12px rgba(0,0,0,.35); }
-    .header-inner { display:flex;align-items:center;gap:.75rem;padding:.85rem 1.25rem; }
-    .header-logo { font-size:1.6rem;flex-shrink:0; }
-    .club-name { font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:800;letter-spacing:.06em;color:#fff;text-transform:uppercase; }
-    .form-sub { font-size:.72rem;color:rgba(255,255,255,.6); }
-    .progress-meta { display:flex;justify-content:space-between;font-size:.7rem;color:rgba(255,255,255,.65);margin-bottom:.4rem; }
-    .progress-track { height:5px;background:rgba(255,255,255,.18);border-radius:3px; }
-    .progress-fill { height:100%;background:var(--red);border-radius:3px;transition:width .45s cubic-bezier(.4,0,.2,1); }
+	  /* ── Termes non-traduisibles surlignés en jaune ── */
+	  mark {
+		background-color: #fef08a;
+		color: inherit;
+		padding: 0 2px;
+		border-radius: 2px;
+	  }
+	  .tatami-texture {
+		background-image: radial-gradient(#c8c5d1 0.5px, transparent 0.5px);
+		background-size: 24px 24px;
+	  }
+	</style>
+	</head>
+	<body class="bg-surface text-on-surface font-body selection:bg-secondary selection:text-white">
 
-    /* layout */
-    .page-wrap { max-width:min(900px, 95%);margin:0 auto;padding:1.1rem .9rem 5rem; }
-    .card { background:#fff;border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.07),0 6px 24px rgba(0,0,0,.07);overflow:hidden; }
 
-    /* step header */
-    .step-hd { background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);border-left:5px solid var(--red);padding:1.1rem 1.4rem;color:#fff; }
-    .hd-icon { font-size:1.4rem;line-height:1;margin-bottom:.2rem; }
-    .hd-title { font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:700;letter-spacing:.02em; }
-    .hd-sub { font-size:.72rem;color:rgba(255,255,255,.6);margin-top:1px; }
+	<!-- ═══════════════════════════════════════════════════
+		 NAVIGATION — commune à toutes les pages
+	════════════════════════════════════════════════════ -->
+	<nav id="main-nav" class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl top-0 sticky z-50 shadow-xl shadow-indigo-950/5 dark:shadow-none">
+	  <div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+		<a class="text-2xl font-black tracking-tighter text-indigo-950 dark:text-indigo-100 font-headline cursor-pointer" data-target="home">EJT BRUGES</a>
+		<div class="hidden md:flex items-center gap-10">
+		  <a class="nav-link font-medium text-xs uppercase tracking-widest font-label transition-colors duration-300 cursor-pointer" data-target="home">Accueil</a>
+		  <a class="nav-link font-medium text-xs uppercase tracking-widest font-label transition-colors duration-300 cursor-pointer" data-target="club">Club</a>
+		  <a class="nav-link font-medium text-xs uppercase tracking-widest font-label transition-colors duration-300 cursor-pointer" data-target="classes">Informations</a>
+		  <a class="nav-link font-medium text-xs uppercase tracking-widest font-label transition-colors duration-300 cursor-pointer" data-target="registration">Inscriptions</a>
+		  <a class="nav-link font-medium text-xs uppercase tracking-widest font-label transition-colors duration-300 cursor-pointer" data-target="documents">Documents</a>
+		</div>
+		
+	  </div>
+	</nav>
 
-    /* panels */
-    .panel { display:none; }
-    .panel.active { display:block;animation:slideIn .3s cubic-bezier(.4,0,.2,1); }
-    @keyframes slideIn { from{opacity:0;transform:translateX(14px)} to{opacity:1;transform:translateX(0)} }
 
-    /* alerts */
-    .alert { margin:.9rem 1.3rem 0;padding:.7rem .95rem;border-radius:8px;font-size:.8rem;line-height:1.55; }
-    .a-info    { background:#eff6ff;border-left:3px solid #3b82f6;color:#1e40af; }
-    .a-warning { background:#fffbeb;border-left:3px solid #f59e0b;color:#7c4a00; }
-    .a-danger  { background:var(--red-bg);border-left:3px solid var(--red);color:#9b1c1c; }
+<!-- ═══════════════════════════════════════════════════
+     PAGE 01 — ACCUEIL
+════════════════════════════════════════════════════ -->
+<div id="page-home" class="page-section active">
 
-    /* fields */
-    .fields { padding:1.1rem 1.3rem; }
-    .field { margin-bottom:1.05rem; }
-    .field:last-child { margin-bottom:0; }
-    .flabel { display:block;font-size:.71rem;font-weight:600;letter-spacing:.055em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem; }
-    .req { color:var(--red); }
-    .fdesc { font-size:.76rem;color:var(--muted);margin-bottom:.35rem;line-height:1.45; }
-
-    .finput { width:100%;padding:.68rem .9rem;border:1.5px solid var(--border);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.93rem;color:var(--text);background:#f8fafc;outline:none;transition:border-color .18s,box-shadow .18s,background .18s;-webkit-appearance:none; }
-    .finput::placeholder { color:#b0bac9; }
-    .finput:focus { border-color:var(--navy);background:#fff;box-shadow:0 0 0 3px rgba(11,31,71,.1); }
-    .finput.err { border-color:var(--red);box-shadow:0 0 0 3px rgba(204,36,24,.1); }
-    .finput.ok  { border-color:var(--ok); }
-    textarea.finput { resize:vertical;min-height:72px; }
-    select.finput { cursor:pointer; }
-
-    .ferr { display:none;font-size:.73rem;font-weight:500;color:var(--red);margin-top:.28rem; }
-    .ferr.show { display:block; }
-
-    /* grid */
-    .grid2 { display:grid;grid-template-columns:1fr 1.7fr;gap:.75rem; }
-    @media(max-width:380px){ .grid2{grid-template-columns:1fr;} }
-
-    /* choices */
-    .choices { display:flex;flex-direction:column;gap:.4rem; }
-    .choice { display:flex;align-items:flex-start;gap:.7rem;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;background:#f8fafc;transition:border-color .15s,background .15s;user-select:none; }
-    .choice:hover { border-color:var(--navy);background:#f0f4fb; }
-    .choice.selected { border-color:var(--navy);background:#eef2fb; }
-    .choice input { display:none; }
-
-    .cdot { flex-shrink:0;margin-top:2px;width:18px;height:18px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all .15s; }
-    .choice.selected .cdot { background:var(--navy);border-color:var(--navy); }
-    .choice.selected .cdot::after { content:'';width:6px;height:6px;background:#fff;border-radius:50%; }
-
-    .csq { flex-shrink:0;margin-top:2px;width:18px;height:18px;border-radius:4px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all .15s; }
-    .choice.selected .csq { background:var(--navy);border-color:var(--navy); }
-    .choice.selected .csq::after { content:'✓';color:#fff;font-size:11px;font-weight:800; }
-
-    .ctext { font-size:.86rem;line-height:1.4;color:var(--text); }
-
-    /* divider */
-    .divider { border:none;border-top:1px solid var(--border);margin:1.1rem 0; }
-    .sec-label { font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--navy);margin-bottom:.55rem; }
-    .sec-sub { font-size:.76rem;color:var(--muted);margin-bottom:.7rem;line-height:1.5; }
-
-    /* nav */
-    .nav-bar { display:flex;gap:.7rem;padding:.9rem 1.3rem;border-top:1px solid var(--border); }
-    .btn { display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.78rem 1rem;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;border:none;cursor:pointer;transition:all .18s; }
-    .btn-p { flex:1;background:var(--navy);color:#fff; }
-    .btn-p:hover:not(:disabled) { background:var(--navy2);transform:translateY(-1px);box-shadow:0 4px 14px rgba(11,31,71,.25); }
-    .btn-p:active:not(:disabled) { transform:translateY(0); }
-    .btn-p:disabled { opacity:.6;cursor:not-allowed;transform:none; }
-    .btn-s { flex:.55;background:#fff;color:var(--muted);border:1.5px solid var(--border); }
-    .btn-s:hover { border-color:var(--navy);color:var(--navy); }
-    .spinner { width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none; }
-    .btn-p.loading .spinner { display:block; }
-    .btn-p.loading .blabel { opacity:.7; }
-    @keyframes spin { to{transform:rotate(360deg)} }
-
-    /* error global */
-    .err-global { display:none;margin:0 1.3rem .8rem;padding:.65rem .9rem;background:var(--red-bg);border:1px solid rgba(204,36,24,.25);border-radius:8px;font-size:.8rem;font-weight:500;color:#9b1c1c; }
-    .err-global.show { display:block; }
-
-    /* success */
-    .success-screen { display:none;text-align:center;padding:2.5rem 1.5rem 2rem; }
-    .success-screen.show { display:block;animation:slideIn .4s ease; }
-    .success-icon { width:76px;height:76px;border-radius:50%;background:var(--navy);margin:0 auto 1.3rem;display:flex;align-items:center;justify-content:center;font-size:2rem;box-shadow:0 8px 24px rgba(11,31,71,.3); }
-    .success-title { font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:800;color:var(--navy);margin-bottom:.4rem; }
-    .success-msg { font-size:.87rem;color:var(--muted);line-height:1.65;max-width:340px;margin:0 auto 1.2rem; }
-  </style>
-</head>
-<body>
-
-<div id="offline-bar">⚡ Connexion internet perdue — vérifiez votre réseau</div>
-
-<header class="app-header">
-  <div class="header-inner">
-  <img src="logo_EJT_cercle_2024.png" style="height:40px;width:auto;" />
-    <div style="flex:1;min-width:0;">
-      <div class="club-name">EJT Bruges</div>
-      <div class="form-sub">Dossier d'adhésion — Saison 2026-2027</div>
+  <header class="relative min-h-[921px] flex items-center overflow-hidden bg-primary">
+    <div class="absolute inset-0 z-0">
+      <img alt="Judogi blanc brodé" class="w-full h-full object-cover opacity-50 mix-blend-luminosity"
+		   src="https://i.postimg.cc/8PX8q0h4/Gemini-Generated-Image-k2lcrzk2lcrzk2lc.png"/>
+      <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent"></div>
     </div>
-    <div style="flex:2;min-width:0;padding-left:1.5rem;">
-      <div class="progress-meta" style="margin-bottom:.4rem;">
-        <span id="prog-label">Étape 1 sur 10</span>
-        <span id="prog-pct">10%</span>
-      </div>
-      <div class="progress-track">
-        <div class="progress-fill" id="prog-fill" style="width:10%"></div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<div class="page-wrap"><div class="card">
-
-  <div class="step-hd" id="step-hd">
-    <div class="hd-icon" id="hd-icon">✉️</div>
-    <div class="hd-title" id="hd-title">Votre adresse e-mail</div>
-    <div class="hd-sub"   id="hd-sub">Section 1 — Identification</div>
-  </div>
-
-  <!-- ══ PANEL 1 : EMAIL ══════════════════════════════════════ -->
-  <div class="panel active" id="p1">
-    <div class="alert a-info">
-      Ceci est le formulaire d'adhésion au club. Merci de lire attentivement toutes les questions.<br>
-      <strong>Il est OBLIGATOIRE de le renseigner pour pouvoir pratiquer.</strong>
-    </div>
-    <div class="fields">
-      <div class="field">
-        <label class="flabel" for="f-email">Adresse e-mail <span class="req">*</span></label>
-        <input class="finput" type="email" id="f-email" placeholder="prenom.nom@exemple.fr" autocomplete="email" inputmode="email"/>
-        <div class="ferr" id="f-email-e">Veuillez entrer une adresse e-mail valide</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ PANEL 2 : IDENTITÉ ═══════════════════════════════════ -->
-  <div class="panel" id="p2">
-    <div class="fields">
-      <div class="field">
-        <label class="flabel" for="f-nom">NOM <span class="req">*</span></label>
-        <p class="fdesc">du judoka</p>
-        <input class="finput" type="text" id="f-nom" placeholder="DUPONT" autocomplete="family-name"/>
-        <div class="ferr" id="f-nom-e">Ce champ est obligatoire</div>
-      </div>
-      <div class="field">
-        <label class="flabel" for="f-prenom">Prénom <span class="req">*</span></label>
-        <p class="fdesc">du judoka</p>
-        <input class="finput" type="text" id="f-prenom" placeholder="Marie" autocomplete="given-name"/>
-        <div class="ferr" id="f-prenom-e">Ce champ est obligatoire</div>
-      </div>
-      <div class="field">
-        <label class="flabel" for="f-ddn">Date de naissance <span class="req">*</span></label>
-        <p class="fdesc">Format : JJ/MM/AAAA</p>
-        <input class="finput" type="text" id="f-ddn" placeholder="15/06/1990" inputmode="numeric" maxlength="10"/>
-        <div class="ferr" id="f-ddn-e">Veuillez entrer une date valide au format JJ/MM/AAAA</div>
-      </div>
-      <div class="field">
-        <label class="flabel" for="f-adresse">Adresse postale <span class="req">*</span></label>
-        <input class="finput" type="text" id="f-adresse" placeholder="12 rue de la Paix" autocomplete="street-address"/>
-        <div class="ferr" id="f-adresse-e">Ce champ est obligatoire</div>
-      </div>
-      <div class="grid2">
-        <div class="field">
-          <label class="flabel" for="f-cp">Code postal <span class="req">*</span></label>
-          <input class="finput" type="text" id="f-cp" placeholder="33520" inputmode="numeric" maxlength="5"/>
-          <div class="ferr" id="f-cp-e">Obligatoire</div>
-        </div>
-        <div class="field">
-          <label class="flabel" for="f-ville">Ville <span class="req">*</span></label>
-          <input class="finput" type="text" id="f-ville" placeholder="Bruges" autocomplete="address-level2"/>
-          <div class="ferr" id="f-ville-e">Obligatoire</div>
+    <div class="relative z-10 max-w-7xl mx-auto px-8 w-full">
+      <div class="max-w-3xl">
+        <span class="inline-block px-3 py-1 bg-red-800 text-white text-[10px] font-black tracking-[0.3em] uppercase mb-6">FONDÉ EN 1974</span>
+        <h1 class="text-white text-6xl md:text-8xl font-black font-headline tracking-tighter leading-[0.9] mb-8">
+          TECHNIQUE.<br/>
+          <span class="text-secondary-fixed-dim">DISCIPLINE.</span><br/>
+          VICTOIRE.
+        </h1>
+        <p class="text-on-primary-container text-lg md:text-xl font-light leading-relaxed mb-10 max-w-xl">
+          Le judo est bien plus qu'un sport. C'est l'art de l'équilibre, de la force maîtrisée et de la persévérance technique au cœur de Bruges.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <button class="bg-red-800 text-white px-8 py-4 text-sm font-bold uppercase tracking-widest rounded transition-transform hover:scale-105 active:scale-95" onclick="navigateTo('registration')">
+            S'inscrire 2026-2027
+          </button>
+          <button class="border border-white/20 text-white px-8 py-4 text-sm font-bold uppercase tracking-widest rounded hover:bg-white hover:text-primary transition-all" onclick="navigateTo('club')">
+            Découvrir le Club
+          </button>
         </div>
       </div>
-      <div class="field">
-        <label class="flabel">Cours du licencié <span class="req">*</span></label>
-        <div class="choices" id="cours-g"></div>
-        <div class="ferr" id="cours-e">Veuillez sélectionner un cours</div>
+    </div>
+  </header>
+
+  <section class="ma-spacing bg-surface">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-16">
+        <h2 class="text-xs font-black tracking-[0.4em] uppercase text-secondary mb-4">L'Esprit du Judo</h2>
+        <h3 class="text-5xl font-bold font-headline text-primary tracking-tighter">NOS VALEURS</h3>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-surface-container-low p-10 group hover:bg-primary transition-colors duration-500">
+          <div class="mb-12">
+            <span class="material-symbols-outlined text-4xl text-secondary group-hover:text-white transition-colors">timer</span>
+          </div>
+          <h4 class="text-2xl font-black font-headline text-primary group-hover:text-white mb-4 tracking-tight">DISCIPLINE</h4>
+          <p class="text-on-surface-variant group-hover:text-on-primary-container leading-relaxed">
+            Le contrôle de soi et le respect des règles forment la base de notre enseignement sur et en dehors du <mark>tatami</mark>.
+          </p>
+        </div>
+        <div class="bg-surface-container-low p-10 group hover:bg-primary transition-colors duration-500">
+          <div class="mb-12">
+            <span class="material-symbols-outlined text-4xl text-secondary group-hover:text-white transition-colors">handshake</span>
+          </div>
+          <h4 class="text-2xl font-black font-headline text-primary group-hover:text-white mb-4 tracking-tight">RESPECT</h4>
+          <p class="text-on-surface-variant group-hover:text-on-primary-container leading-relaxed">
+            Sans partenaire, il n'y a pas de progrès. Nous honorons nos adversaires et nos maîtres avec humilité.
+          </p>
+        </div>
+        <div class="bg-surface-container-low p-10 group hover:bg-primary transition-colors duration-500">
+          <div class="mb-12">
+            <span class="material-symbols-outlined text-4xl text-secondary group-hover:text-white transition-colors">groups</span>
+          </div>
+          <h4 class="text-2xl font-black font-headline text-primary group-hover:text-white mb-4 tracking-tight">AMITIÉ</h4>
+          <p class="text-on-surface-variant group-hover:text-on-primary-container leading-relaxed">
+            Une communauté soudée où l'entraide mutuelle permet à chacun d'atteindre ses objectifs personnels et sportifs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-surface-container-low ma-spacing">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-20">
+      <div class="md:w-1/3">
+        <h2 class="text-xs font-black tracking-[0.4em] uppercase text-secondary mb-4">LE CLUB EN MOUVEMENT</h2>
+        <h3 class="text-5xl font-bold font-headline text-primary tracking-tighter leading-none mb-6">DERNIÈRES ACTUALITÉS</h3>
+        <p class="text-on-surface-variant mb-8">Restez informé des derniers exploits de nos athlètes et des prochains rendez-vous de la saison.</p>
+        <a class="inline-flex items-center gap-2 text-primary font-black uppercase tracking-widest text-xs hover:gap-4 transition-all cursor-pointer">
+          VOIR TOUT LE FLUX <span class="material-symbols-outlined">trending_flat</span>
+        </a>
+      </div>
+      <div class="md:w-2/3 space-y-4">
+        <article class="bg-white p-8 flex items-center justify-between shadow-sm hover:shadow-xl transition-shadow judo-belt-accent border-secondary">
+          <div>
+            <span class="text-[10px] font-bold text-secondary-container tracking-widest uppercase mb-2 block">Résultats Compétition</span>
+            <h4 class="text-xl font-bold font-headline text-primary">Open International de Bruges : 3 Médailles d'Or</h4>
+            <p class="text-on-surface-variant text-sm mt-2">Félicitations à notre équipe junior pour cette performance historique le week-end dernier.</p>
+          </div>
+          <div class="hidden sm:block">
+            <span class="material-symbols-outlined text-primary-container/20 text-5xl">military_tech</span>
+          </div>
+        </article>
+        <article class="bg-white p-8 flex items-center justify-between shadow-sm hover:shadow-xl transition-shadow judo-belt-accent border-primary">
+          <div>
+            <span class="text-[10px] font-bold text-primary tracking-widest uppercase mb-2 block">Événement Club</span>
+            <h4 class="text-xl font-bold font-headline text-primary">Stage de Noël avec Maître Tanaka</h4>
+            <p class="text-on-surface-variant text-sm mt-2">Une opportunité unique de perfectionner votre <mark>Ne-Waza</mark> avec un expert international.</p>
+          </div>
+          <div class="hidden sm:block">
+            <span class="material-symbols-outlined text-primary-container/20 text-5xl">calendar_today</span>
+          </div>
+        </article>
+        <article class="bg-white p-8 flex items-center justify-between shadow-sm hover:shadow-xl transition-shadow judo-belt-accent border-tertiary-container">
+          <div>
+            <span class="text-[10px] font-bold text-on-tertiary-container tracking-widest uppercase mb-2 block">Vie du Club</span>
+            <h4 class="text-xl font-bold font-headline text-primary">Passage de Grades : Session d'Hiver</h4>
+            <p class="text-on-surface-variant text-sm mt-2">Les inscriptions pour les examens de ceintures sont désormais ouvertes jusqu'au 15 décembre.</p>
+          </div>
+          <div class="hidden sm:block">
+            <span class="material-symbols-outlined text-primary-container/20 text-5xl">workspace_premium</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative py-24 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img alt="Texture tatami" class="w-full h-full object-cover opacity-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoDr3Nz9Na3zlBABL8ch8kWAlI2Fs6dCGFnP-ttqAsZxuA5y_EStqZlRxcIbMN9UNjY5UNdCGKpJP3HN3AEpDVd1o39eaXsOc2RqxRGMkjcbIEkOnOki-15RqpDkcI4c6fv4xXQiZ9pHdCJoMvyxoh1uVbdpGAfqZN3qzlscN7_phqwtYv6Hy6btkazgYKG_3I9HAjhxReMhWo-zlOkz5fQH4dABfhPUniIrA4ApqaUPeERU9_fs5uoQu4qXwGGH_1_V0UugF0jf4"/>
+    </div>
+    <div class="max-w-5xl mx-auto px-8 relative z-10 text-center">
+      <h2 class="text-6xl md:text-8xl font-black font-headline tracking-tighter text-primary mb-10 leading-none">
+        REJOIGNEZ <span class="text-secondary">L'ÉLITE.</span>
+      </h2>
+      <div class="bg-white p-12 shadow-2xl inline-block max-w-2xl mx-auto border-t-8 border-secondary">
+        <p class="text-xl font-medium text-primary mb-8 font-headline">INSCRIPTIONS OUVERTES : SAISON 2024-2025</p>
+        <p class="text-on-surface-variant mb-10 leading-relaxed">
+          Que vous soyez débutant ou compétiteur chevronné, trouvez votre place au sein de l'EJT Bruges. Places limitées par groupe d'âge.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <button class="bg-secondary text-white px-10 py-5 font-bold uppercase tracking-widest rounded-lg hover:scale-105 active:scale-95 transition-transform flex items-center justify-center gap-3 shadow-lg shadow-secondary/20" onclick="navigateTo('registration')">
+            S'INSCRIRE MAINTENANT <span class="material-symbols-outlined">app_registration</span>
+          </button>
+          <button class="bg-primary text-white px-10 py-5 font-bold uppercase tracking-widest rounded-lg hover:bg-primary-container transition-colors" onclick="navigateTo('classes')">
+            HORAIRES DES COURS
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-home -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 02 — LE CLUB
+════════════════════════════════════════════════════ -->
+<div id="page-club" class="page-section">
+
+  <header class="relative h-[819px] flex items-center overflow-hidden dojo-gradient">
+    <div class="absolute inset-0 opacity-60">
+      <img alt="Judokas in action" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmPfgDD1nerXwwhJrTg5tyvX6NU5QjEEt56m5AnLJRyV0MsCEQR5FO45CLuYYrcrdxgskd9uVfpxflLJe1VdNo8z_-I_q4KCipWJNqHJ08ZW_Yrz3efyrAPRm4gt5LcAbDApdpwEv0V7CmlaGkTrE10IDudTq8fCPlUxOC_vkHvueiqmQjKS5HOK7IsAVJ7pq1itfuGP-TpRD4_nS3m9t1lHVGI6KxCyGZt8i-JyN-2zUAvhga-LZewxrxNvfqaADmqSY28WVKy1w"/>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-8 w-full">
+      <div class="max-w-3xl">
+        <span style="color: navajowhite;" class="font-label text-xs uppercase tracking-[0.3em] font-bold mb-4 block">Tradition &amp; Discipline</span>
+        <h1 class="text-white text-7xl md:text-9xl font-headline font-bold tracking-tighter leading-[0.85] mb-8">
+          EJT ES Burges <br/><span class="text-outline-variant/30"></span>
+        </h1>
+        <p class="text-white text-lg md:text-xl max-w-xl font-light leading-relaxed">
+          Fondé sur les principes du <mark>Kodokan</mark>, l'EJT Bruges est plus qu'un dojo. C'est une communauté dédiée à la recherche de la perfection technique et de l'équilibre mental.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section class="py-24 bg-surface">
+    <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+      <div class="md:col-span-7">
+        <div class="inline-flex items-center gap-4 mb-8">
+          <div class="h-[1px] w-12 bg-secondary"></div>
+          <span class="font-label text-xs uppercase tracking-widest font-bold text-secondary">Notre Histoire</span>
+        </div>
+        <h2 class="text-5xl font-headline font-bold tracking-tighter text-primary mb-12">L'HÉRITAGE DU <br/>TATAMI BRUGEOIS.</h2>
+        <div class="space-y-8 text-on-surface-variant leading-relaxed text-lg font-light">
+          <p>Depuis sa fondation au cœur de Bruges, notre club incarne la philosophie de Jigoro Kano. Ce qui a commencé comme un petit groupe de passionnés est devenu une institution respectée, formant des générations de judokas aux valeurs d'honneur et de respect.</p>
+          <p>Nous cultivons le « <mark>Seiryoku Zenyo</mark> » (efficacité maximale pour un effort minimal) non seulement comme une technique de combat, mais comme un art de vivre partagé par tous nos membres.</p>
+        </div>
+      </div>
+      <div class="md:col-span-5 relative">
+        <div class="aspect-[4/5] bg-surface-container overflow-hidden rounded-lg shadow-2xl">
+          <img alt="dojo1" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmrCqmXfbG7BwQTQQFLO_Z9wEl7SzXDMYqnUOuRMtR_93z-bi_GBzzZlYIyp0ZcdUPFYLEC0Q9Ex8o0otPwr3R9-S5YPkFvc84yzNZFFj-pdNisQdXGVYi2SE0nwHBarc_b4ZoRmjTJ6pm8Rm7tZGuSEmmuzvVjCSUpAme-i5JJ4PA2GiCxrKtS_zcSctGkvkmuUqtvyhw5vF7Wz8wULo6xI3x0qYCS_mNA3lGi5Ms04HqrPICyfVEf9rkqgKT5Aqmt2nB0WSJ3DY"/>
+        </div>
+        <div class="absolute -bottom-10 -left-10 bg-white p-8 shadow-xl max-w-[240px]">
+          <p class="font-headline text-5xl font-black text-secondary leading-none">1978</p>
+          <p class="font-label text-[10px] uppercase tracking-tighter font-bold mt-2 text-primary">Année de fondation à Bruges</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-surface-container-low">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex justify-between items-end mb-16">
+        <div>
+          <span class="font-label text-xs uppercase tracking-widest font-bold text-secondary mb-4 block">L'Expertise</span>
+          <h2 class="text-5xl font-headline font-bold tracking-tighter text-primary">NOS PROFESSEURS.</h2>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-surface-container-lowest p-2 group transition-all duration-500 hover:shadow-2xl">
+          <div class="aspect-[3/4] overflow-hidden mb-6 relative">
+            <img alt="Prof1" class="w-full h-full object-cover filter contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA_YwkJY5yXJhFg_s2emdg4xm67WENlVZ8ElIwv6-bL2Q02UDgQsOxMr2jO-pij9M0Ebl8HZG6kVC_nUKqpbCmb72hu5_4j6QgB8AyljEslc9AIUanWCJ3fsbGPTNYd0L2J5ozuQAyLuXa52CUOo_zUaXlhWl89O341JXXIW3ExYHjKlPiwSg8Gzhc6upBUH6L_3UaQ38TQ60Ni68w8wbrO4bm8DzBM04yA5S8BIp-LEeqwYamE3Gr7gtX_vDNzb_Rq1mFK7RfhFg"/>
+            <div class="absolute top-4 left-4">
+              <div class="bg-primary px-3 py-1 text-white font-label text-[10px] uppercase tracking-widest font-bold"><mark>Sensei</mark> Principal</div>
+            </div>
+          </div>
+          <div class="px-6 py-4">
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="font-headline text-2xl font-bold tracking-tight">Jean-Marc Leroy</h3>
+              <div class="flex flex-col items-end">
+                <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold font-label">CEINTURE NOIRE</span>
+                <span class="text-secondary font-black text-xl">6ème DAN</span>
+              </div>
+            </div>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Directeur technique, expert en <mark>Ne-Waza</mark>. Plus de 30 ans d'enseignement du Judo originel.</p>
+          </div>
+        </div>
+        <div class="bg-surface-container-lowest p-2 group transition-all duration-500 hover:shadow-2xl">
+          <div class="aspect-[3/4] overflow-hidden mb-6 relative">
+            <img alt="Prof2" class="w-full h-full object-cover filter contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbzaMpxM86BpIRDeGafVI_2J-rLXQa-rlXv5OXjFlciA-2pdnQSagydy2v9v1TVnaujErz2xOHyIPwMUZjaPx87PkwXy3-Knz22dgAQcZGfNKUb3IMzOn_QxagzHItMWips95WRDBZFdnd_0WJDbGhMLjtZe1bbxPy0jcXB4X_Ben6GJ7UAIjdHEb4v3H_v3Z-4I7aOpkAtiO9Gj4TbmkRlXzU7lKSk0GjNZJg47MGxGb2jrszdeyCo8eKvpiqgQ99sXDMGwPbWps"/>
+          </div>
+          <div class="px-6 py-4">
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="font-headline text-2xl font-bold tracking-tight">Sophie Vandame</h3>
+              <div class="flex flex-col items-end">
+                <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold font-label">CEINTURE NOIRE</span>
+                <span class="text-secondary font-black text-xl">4ème DAN</span>
+              </div>
+            </div>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Spécialiste de la formation jeunesse et de la compétition régionale. Championne de France 2015.</p>
+          </div>
+        </div>
+        <div class="bg-surface-container-lowest p-2 group transition-all duration-500 hover:shadow-2xl">
+          <div class="aspect-[3/4] overflow-hidden mb-6 relative">
+            <img alt="Prof3" class="w-full h-full object-cover filter contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi1jv4iL-Pk-Id_5zVrwyN9tEil6rLeYc5_0zosY-NxNbD-b3pgPJpBg29uCcXfBPsxfJdCpLfL5qiOd-O_yVBXy99XXzvH7UCJfoXzypblplMvgPO-deLJ4p5ZxctDkdW5Le5x2gyYQgbuTB2onRJ8W5TGOs34PlN8kG7JNTejP9HB3TBR3TunpfOstK_4oDg68D949qO-zIwyMwqbrEN_64POkNZvhUDJxttQ0W0NoqnOeoaXgCGf-uftzqXfsg1ialSPJRxndY"/>
+          </div>
+          <div class="px-6 py-4">
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="font-headline text-2xl font-bold tracking-tight">Pierre Dubois</h3>
+              <div class="flex flex-col items-end">
+                <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold font-label">CEINTURE NOIRE</span>
+                <span class="text-secondary font-black text-xl">3ème DAN</span>
+              </div>
+            </div>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Expert en <mark>Kata</mark> et self-défense. Veille à la transmission technique pure du style <mark>Kodokan</mark>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-32 bg-surface overflow-hidden">
+    <div class="max-w-7xl mx-auto px-8 relative">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        <div class="lg:col-span-5 order-2 lg:order-1">
+          <div class="relative">
+            <div class="aspect-square bg-surface-container-high rounded-full absolute -top-20 -left-20 w-96 h-96 opacity-30 blur-3xl"></div>
+            <div class="relative z-10 space-y-8">
+              <span class="font-label text-xs uppercase tracking-widest font-bold text-secondary">Le Sanctuaire</span>
+              <h2 class="text-6xl font-headline font-bold tracking-tighter text-primary">NOS INFRASTRUCTURES.</h2>
+              <p class="text-on-surface-variant text-lg leading-relaxed font-light">Notre dojo à Bruges est conçu pour favoriser la concentration et l'effort. Avec plus de 400 m² de surface de combat, nous offrons un environnement sécurisé et professionnel.</p>
+              <ul class="space-y-6">
+                <li class="flex items-start gap-4">
+                  <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <div>
+                    <h4 class="font-headline font-bold text-primary tracking-tight">TATAMIS OLYMPIQUES</h4>
+                    <p class="text-sm text-on-surface-variant">Surface de combat de haute densité pour une absorption optimale des chocs.</p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-4">
+                  <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <div>
+                    <h4 class="font-headline font-bold text-primary tracking-tight">ESPACE PRÉPARATION</h4>
+                    <p class="text-sm text-on-surface-variant">Zone de renforcement musculaire et d'étirements dédiée.</p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-4">
+                  <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <div>
+                    <h4 class="font-headline font-bold text-primary tracking-tight">ZONE DE RÉCUPÉRATION</h4>
+                    <p class="text-sm text-on-surface-variant">Vestiaires modernes et espace détente pour l'après-entraînement.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-7 order-1 lg:order-2 flex gap-4">
+          <div class="flex-1 mt-12">
+            <img alt="Dojo2" class="w-full h-[500px] object-cover shadow-2xl rounded-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8lN05LlTOu05Hr5G4XpTrVfYaXQFlRKj1jicy31Gm0pc9bbisxHzU95ER9MVLYknPzbbhqcsHZSha3MqRGQjL5giBo6eoR8wR7GxEQgEtxw4FQs2Usn6qoxaGAvCIQtwkpQ6iq_iyfmQmZvuRuIzPwawfIqd0HdcYGx8vHTs4gUsh96d7-PKTriJ8riTk0XTRT2_XiNCzi_WvAtWoYSCZJ5ADfd8YLsMB6-gsSmC4qAscqwyTmXYtLFfrjP5oZ1SYEHNQcbOs9ng"/>
+          </div>
+          <div class="flex-1">
+            <img alt="ceintures" class="w-full h-[500px] object-cover shadow-2xl rounded-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz9zkNUaOlh5adGGeKkBlS0GSd0FJRhPvkQza60vTQrjeeG_MxMwseBQhfUeJijZQHaOySdxdXtevsXUK8nzLgK_WZDy1y9_iEv5YNAvpmDM9MtdB-q882foFw9kiYeX0eQdIu28qgiJ6AD5D64GxFIBqzuq6kssAvikjiV0drvDxE0Q4wlkkWwIkLsxmTDjduwaeHCkxINjwJcxRQbKHj9LCuxaMGVWgXaEHglUSJnxX4-tpl2Zapmfsbx3vRwwsGkuCUpgvhRiY"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-primary text-white">
+    <div class="max-w-7xl mx-auto px-8 text-center">
+      <h2 class="text-5xl md:text-7xl font-headline font-bold tracking-tighter mb-8 italic">REJOIGNEZ LA FAMILLE.</h2>
+      <p class="text-xl font-light text-primary-fixed mb-12 max-w-2xl mx-auto uppercase tracking-widest text-xs">Le premier pas est le plus difficile. Nous sommes là pour vous accompagner.</p>
+      <div class="flex flex-col md:flex-row gap-6 justify-center">
+        <button class="bg-secondary px-10 py-4 font-label text-sm uppercase tracking-[0.2em] font-bold hover:scale-105 transition-all" onclick="navigateTo('registration')">Cours d'essai gratuit</button>
+        <button class="border border-outline-variant/30 px-10 py-4 font-label text-sm uppercase tracking-[0.2em] font-bold hover:bg-white hover:text-primary transition-all" onclick="navigateTo('classes')">Nos tarifs</button>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-club -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 03 — NOS COURS (STRUCTURE FINALE : JUDO + 2 BLOCS)
+═══════════════════════════════════════════════════ -->
+<div id="page-classes" class="page-section">
+<main class="max-w-7xl mx-auto px-8 py-16">
+
+  <!-- SECTION INTRODUCTION (Inchangée) -->
+  <section class="mb-24">
+    <span class="text-xs uppercase tracking-widest font-bold text-secondary mb-4 block">Saison 2026/2027</span>
+    <h1 class="text-7xl font-bold tracking-tighter text-primary mb-6 leading-none">INFORMATIONS </h1>
+    <p class="text-on-surface-variant max-width-2xl text-lg leading-relaxed">Une progression méthodique à travers les disciplines du Judo.<br>Efficacité maximale, effort minimal.</p>
+  </section>
+
+  <!-- GRILLE PRINCIPALE -->
+  <div class="flex flex-col gap-8 mb-30">
+	  <h2 class="text-5xl font-bold tracking-tighter text-primary mb-5">Cours 2026-2027</h2>
+    
+    <!-- SECTION PRINCIPALE -->
+<div class="space-y-8">
+
+  <!-- BLOC 1 : LE GRAND BLOC "JUDO" -->
+  <div class="bg-surface-container-low p-8 rounded-lg border-l-4 border-secondary shadow-sm">
+    <div class="flex items-center gap-4 mb-8">
+      <h3 class="text-3xl font-black tracking-tighter text-primary uppercase">Judo</h3>
+    </div>
+    
+    <!-- Grille des sous-blocs blancs pour Judo -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Sous-bloc Judo 1 -->
+      <div class="bg-white p-6 rounded shadow-sm border border-outline-variant/20">
+        <p class="text-[10px] font-bold uppercase tracking-widest text-secondary mb-4">5-6 ANS (né en 2021 et 2020)</p>
+        <div class="space-y-3">
+          <div class="flex justify-between items-center border-b border-outline-variant/10 pb-2">
+            <span class="text-m font-bold text-on-surface-variant">Mardi</span>
+            <span class="font-bold text-primary">17:30 - 18:30</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-m font-bold text-on-surface-variant">Vendredi</span>
+            <span class="font-bold text-primary">17:30 - 18:30</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sous-bloc Judo 2 -->
+      <div class="bg-white p-6 rounded shadow-sm border border-outline-variant/20">
+        <p class="text-[10px] font-bold uppercase tracking-widest text-secondary mb-4">7-10 ANS (né entre 2019 et 2016)</p>
+        <div class="space-y-3">
+          <div class="flex justify-between items-center border-b border-outline-variant/10 pb-2">
+            <span class="text-m font-bold text-on-surface-variant">Mardi</span>
+            <span class="font-bold text-primary">18:30 - 20:00</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-m font-bold text-on-surface-variant">Vendredi</span>
+            <span class="font-bold text-primary">18:30 - 20:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sous-bloc Judo 3 -->
+      <div class="bg-white p-6 rounded shadow-sm border border-outline-variant/20">
+        <p class="text-[10px] font-bold uppercase tracking-widest text-secondary mb-4">11 ANS ET PLUS (né à partir de 2015)</p>
+        <div class="space-y-3">
+          <div class="flex justify-between items-center border-b border-outline-variant/10 pb-2">
+            <span class="text-m font-bold text-on-surface-variant">Mardi</span>
+            <span class="font-bold text-primary">20:00 - 22:00</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-m font-bold text-on-surface-variant">Vendredi</span>
+            <span class="font-bold text-primary">20:00 - 22:00</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ══ PANEL 3 : MÉDICAL ════════════════════════════════════ -->
-  <div class="panel" id="p3">
-    <div class="alert a-warning">
-      Le certificat médical n'est plus obligatoire. Vous pouvez répondre à un questionnaire de santé.<br>
-      • Réponse <strong>Oui</strong> à toutes les questions → transmettre l'attestation.<br>
-      • Réponse <strong>Non</strong> à une question → fournir un certificat médical <em>"apte à la pratique [discipline]"</em>.
+  <!-- LIGNE 2 : LES DEUX BLOCS (BabyJudo & Jujitsu) -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    
+    <!-- Bloc BabyJudo -->
+    <div class="bg-surface-container-low p-8 rounded-lg border-l-4 border-secondary shadow-sm">
+      <h3 class="text-3xl font-black tracking-tighter text-primary uppercase mb-6">BabyJudo</h3>
+      
+      <!-- Sous-bloc blanc pour BabyJudo -->
+      <div class="bg-white p-6 rounded shadow-sm border border-outline-variant/20">
+        <p class="text-[10px] font-bold uppercase tracking-widest text-secondary mb-4">4 ANS (né en 2022)</p>
+        <div class="space-y-3">
+          <div class="flex justify-between items-center border-b border-outline-variant/10 pb-2">
+            <span class="text-m font-bold text-on-surface-variant">Mercredi</span>
+            <span class="font-bold text-primary">17:30 - 18:30</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="fields">
-      <div class="field">
-        <label class="flabel">Certificat médical <span class="req">*</span></label>
-        <p class="fdesc">⚠️ Le choix "Non Pratiquant" est réservé aux membres du bureau qui ne font ni judo ni jujitsu</p>
-        <div class="choices" id="cert-g"></div>
-        <div class="ferr" id="cert-e">Veuillez faire un choix</div>
-      </div>
-      <div class="field">
-        <label class="flabel" for="f-allergie">Allergie(s) ?</label>
-        <p class="fdesc">Cette réponse n'est pas obligatoire</p>
-        <input class="finput" type="text" id="f-allergie" placeholder="Aucune / pénicilline, arachides..."/>
-      </div>
-      <div class="field">
-        <label class="flabel" for="f-traitement">Traitement médical ? (Médicaments, Asthme…)</label>
-        <p class="fdesc">Cette réponse n'est pas obligatoire</p>
-        <input class="finput" type="text" id="f-traitement" placeholder="Aucun / Ventoline..."/>
+
+    <!-- Bloc Jujitsu -->
+    <div class="bg-surface-container-low p-8 rounded-lg border-l-4 border-secondary shadow-sm">
+      <h3 class="text-3xl font-black tracking-tighter text-primary uppercase mb-6">Jujitsu</h3>
+      
+      <!-- Sous-bloc blanc pour Jujitsu -->
+      <div class="bg-white p-6 rounded shadow-sm border border-outline-variant/20">
+        <p class="text-[10px] font-bold uppercase tracking-widest text-secondary mb-4"></p>
+        <div class="space-y-3">
+          <div class="flex justify-between items-center border-b border-outline-variant/10 pb-2">
+            <span class="text-m font-bold text-on-surface-variant">Mercredi</span>
+            <span class="font-bold text-primary">19:30 - 21:00</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</div>
+</div>
 
-  <!-- ══ PANEL 4 : INFO MINEURS ═══════════════════════════════ -->
-  <div class="panel" id="p4">
-    <div class="alert a-danger" style="margin-bottom:.75rem">
-      <strong>⚠️ À L'ATTENTION DES PARENTS ET/OU TUTEUR LÉGAL (IMPORTANT)</strong>
+  <!-- SECTION COTISATIONS ET ÉQUIPEMENT (Inchangée) -->
+  <section class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start pb-16">
+    <div>
+      <h2 class="text-5xl font-bold tracking-tighter text-primary mb-7">TARIFS 2026-2027</h2>
+<div class="space-y-4">
+	
+ <!-- BLOC 0 -->
+  <div class="bg-surface-container-low p-6 flex justify-between items-center group hover:bg-surface-container transition-colors">
+    <div class="text-left">
+      <h4 class="text-xl font-bold text-primary">Licence fédérale&nbsp;</h4>
+      <span class="text-xs font-bold text-on-surface-variant">*Payable en plusieurs fois <br>*Chèque, Espèces, CB via HelloAsso</span>
     </div>
-    <div class="fields" style="padding-top:.5rem">
-      <ul style="font-size:.83rem;line-height:1.75;padding-left:1.2rem">
-        <li>Les accompagnateurs des adhérents mineurs doivent <strong>IMPÉRATIVEMENT</strong> s'assurer de la présence des responsables de la section, des éducateurs ou du professeur de sport avant de laisser les enfants.</li>
-        <li style="margin-top:.5rem">L'adhésion à l'Entente Sportive de Bruges (ESB) ne sera effective qu'après présentation du dossier d'adhésion complet remis par la section. Le dossier doit comprendre notamment un certificat médical de non contre-indication à la pratique du judo (avec, le cas échéant, la mention « en compétition »). Je reconnais avoir pris connaissance du règlement intérieur et des Statuts de l'ESB.</li>
-        <li style="margin-top:.5rem"><strong>Aucun mineur ne pourra adhérer sans autorisation parentale.</strong></li>
+    <div class="text-3xl font-black text-primary">46 €<span class="text-sm font-normal text-on-surface-variant">&nbsp;</span></div>
+  </div>
+	
+  <!-- BLOC 1 -->
+  <div class="bg-surface-container-low p-6 flex justify-between items-center group hover:bg-surface-container transition-colors">
+    <div class="text-left">
+      <h4 class="text-xl font-bold text-primary">Adhésion annuelle Judo</h4>
+      <span class="text-xs font-bold text-on-surface-variant">*Payable en plusieurs fois <br>*Chèque, Espèces, CB via HelloAsso</span>
+    </div>
+    <div class="text-3xl font-black text-primary">270 €<span class="text-sm font-normal text-on-surface-variant">/an</span></div>
+  </div>
+
+  <!-- BLOC 2 -->
+  <div class="bg-surface-container-low p-6 flex justify-between items-center group hover:bg-surface-container transition-colors">
+    <div class="text-left">
+      <h4 class="text-xl font-bold text-primary">Adhésion annuelle BabyJudo</h4>
+      <span class="text-xs font-bold text-on-surface-variant">*Payable en plusieurs fois <br>*Chèque, Espèces, CB via HelloAsso</span>
+    </div>
+    <div class="text-3xl font-black text-primary">210 €<span class="text-sm font-normal text-on-surface-variant">/an</span></div>
+  </div>
+
+  <!-- BLOC 3 -->
+  <div class="bg-surface-container-low p-6 flex justify-between items-center group hover:bg-surface-container transition-colors">
+    <div class="text-left">
+      <h4 class="text-xl font-bold text-primary">Adhésion annuelle Jujitsu</h4>
+      <span class="text-xs font-bold text-on-surface-variant">*Payable en plusieurs fois <br>*Chèque, Espèces, CB via HelloAsso</span>
+    </div>
+    <div class="text-3xl font-black text-primary">210 €<span class="text-sm font-normal text-on-surface-variant">/an</span></div>
+  </div>
+
+</div>
+
+    </div>
+    <div class="bg-surface-container-low p-12 rounded-lg">
+      <h2 class="text-5xl font-bold tracking-tighter text-primary mb-8 leading-tight">L'ÉQUIPEMENT<br/>NÉCESSAIRE</h2>
+      <div class="flex gap-6 mb-12">
+        <div class="w-16 h-16 bg-white flex items-center justify-center rounded-lg shadow-sm">
+          <span class="material-symbols-outlined text-primary text-3xl">checkroom</span>
+        </div>
+        <div class="flex-1">
+          <h4 class="text-xl font-bold text-primary uppercase tracking-tighter mb-2">JUDOGI (KIMONO)</h4>
+          <p class="text-on-surface-variant leading-relaxed text-sm">Un kimono blanc est obligatoire pour tous les cours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+</div>
+<!-- /PAGE 03 -->
+
+
+
+<!-- ═══════════════════════════════════════════════════
+PAGE 04 — INSCRIPTIONS
+════════════════════════════════════════════════════ -->
+<div id="page-registration" class="page-section">
+  <!-- On utilise max-w-6xl pour avoir assez de largeur pour le bloc + le bouton -->
+  <main class="max-w-7xl mx-auto px-8 py-16">
+
+   <!-- EN-TÊTE (Version centrée, sans toucher au reste) -->
+  <div class="mb-24 flex flex-col items-center text-center">
+  
+  <h1 class="text-7xl font-bold tracking-tighter font-headline text-primary max-w-none leading-[1.2]">
+    REJOIGNEZ-NOUS À<span class="text-secondary"><br>EJT ES Bruges</span>
+  </h1>
+    </div>
+      <br><p class="mt-8 text-xl text-on-surface-variant max-w-none font-light">
+        Suivez les étapes 1 et 2 pour demander votre licence et vous inscrire au Judo, au Babyjudo ou au Jujitsu.*<br><br>Vous pouvez aller à l'étape 3 pour remplir le formulaire pour faire 1 cours d'essai gratuit.
+      </p>
+		<p class="mt-4 text-[10px] text-on-surface-variant max-w-none font-light">
+        *L'adhésion ne pourra être complette que lorsque les formulaires seront remplis intégralement, que vous nous aurez transmis l'attestation de santé ou certificat médical et que les règlements de licence et de cotisation seront à jour. <br> <br> <br> <br>
+      </p>
+	  
+  
+	  
+     <span class="text-secondary font-label text-xs uppercase tracking-[0.3em] font-bold block mb-4">Adhésion</span>
+    <!-- CONTENEUR DES LIGNES (Contient toutes les lignes de blocs+boutons) -->
+    <div class="flex flex-col gap-8">
+
+      <!-- LIGNE 01 -->
+      <div class="flex flex-col lg:flex-row items-center gap-6">
+        <!-- LE BLOC (Prend tout l'espace disponible avec flex-grow) -->
+        <div class="flex-grow bg-surface-container-low p-10 rounded-lg relative overflow-hidden min-h-[250px] flex items-start group">
+          <span class="absolute left-4 top-0 text-[150px] font-black text-primary/25 font-headline select-none">01</span>
+          <div class="relative z-10 pl-48 mt-[10px]">
+            <h3 class="text-4xl font-bold font-headline text-primary mb-4">Demande de Licence</h3>
+            <p class="text-on-surface-variant max-w-md">Complétez le formulaire numérique via notre portail sécurisé.</p>
+          </div>
+        </div>
+        <!-- LE BOUTON (Taille fixe, ne s'écrase pas avec flex-shrink-0) -->
+        <a href="#" class="w-full lg:w-64 flex-shrink-0 bg-red-800 text-white p-6 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300 font-bold text-center block">
+          Demander la licence
+        </a>
+      </div>
+
+      <!-- LIGNE 02 -->
+      <div class="flex flex-col lg:flex-row items-center gap-6">
+        <!-- LE BLOC -->
+        <div class="flex-grow bg-surface-container-low p-10 rounded-lg relative overflow-hidden min-h-[250px] flex items-start group">
+          <span class="absolute left-4 top-0 text-[150px] font-black text-primary/25 font-headline select-none">02</span>
+          <div class="relative z-10 pl-48 mt-[10px]">
+            <h3 class="text-4xl font-bold font-headline text-primary mb-4">Formulaire d'adhésion</h3>
+            <p class="text-on-surface-variant max-w-md">Recueillir vos informations essentielles et vos contacts d'urgence.</p>
+          </div>
+        </div>
+        <!-- LE BOUTON -->
+        <a href="#" class="w-full lg:w-64 flex-shrink-0 bg-red-800 text-white p-6 rounded-2xl shadow-lg hover:scale-scale-105 transition-all duration-300 font-bold text-center block">
+          Accéder au formulaire 
+        </a>
+      </div>
+       <span class="text-secondary font-label text-xs uppercase tracking-[0.3em] font-bold block mb-[-1rem]">Essai</span>
+      <!-- LIGNE 03 -->
+      <div class="flex flex-col lg:flex-row items-center gap-6">
+        <!-- LE BLOC -->
+        <div class="flex-grow bg-primary text-on-primary p-10 rounded-lg relative overflow-hidden min-h-[250px] flex items-start group">
+          <span class="absolute left-4 top-0 text-[150px] font-black text-on-primary/25 font-headline select-none">03</span>
+          <div class="relative z-10 pl-48 mt-[10px]">
+            <h3 class="text-4xl font-bold font-headline text-on-primary mb-4">Cours d'essai</h3>
+            <p class="text-on-primary/80 max-w-md">Inscrivez-vous pour découvrir nos pratiques au dojo.</p>
+          </div>
+        </div>
+        <!-- LE BOUTON (Contient le texte demandé) -->
+        <a href="#" class="w-full lg:w-64 flex-shrink-0 bg-gray-500 text-white p-6 rounded-2xl shadow-lag hover:scale-105 transition-all duration-300 font-bold text-center block">
+          Accéder au formulaire 
+        </a>
+      </div>
+
+    </div> <!-- FIN DES LIGNES -->
+
+    <!-- SECTION RESSOURCES (Inchangée) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pt-16 border-t border-outline-variant/20">
+        <!-- ... (ton code habituel) ... -->
+    </div>
+
+  </main>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 05 — DOCUMENTS
+════════════════════════════════════════════════════ -->
+<div id="page-documents" class="page-section">
+<main class="pt-12 pb-20 px-6 max-w-7xl mx-auto">
+
+    <!-- Hero Header -->
+    <header class="py-16 md:py-24 relative overflow-hidden">
+        <div class="absolute -right-2 top-0 opacity-10 pointer-events-none select-none">
+            <span class="text-[20vw] font-black font-headline leading-none">JUDO</span>
+        </div>
+        <div class="relative z-10">
+            <p class="font-label text-sm uppercase tracking-[0.3em] text-secondary font-bold mb-4">Espace Membres</p>
+            <h1 class="font-headline text-5xl md:text-7xl font-bold tracking-tighter text-primary max-w-3xl leading-none">
+                DOCUMENTS <br>
+            </h1>
+            <br><br><br>
+        </div>
+    </header>
+
+    <!-- Download Center Section -->
+    <section class="mb-24">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+                <h2 class="font-headline text-3xl font-bold tracking-tight text-primary">Download Center</h2>
+                <p class="text-on-surface-variant max-w-md mt-2">Accédez aux ressources officielles du club. Documents mis à jour pour la saison 2026-2027.</p>
+            </div>
+            <div class="flex gap-2">
+                <div class="px-4 py-2 bg-surface-container-low font-label text-xs font-bold border-l-4 border-primary">OFFICIEL</div>
+                <div class="px-4 py-2 bg-surface-container-low font-label text-xs font-bold border-l-4 border-secondary">PDF</div>
+            </div>
+        </div>
+
+         <!-- Bento Grid Documents -->
+        <div class="flex flex-col gap-6">
+            <!-- LIGNE 1 : UN SEUL BLOC (Centré) -->
+            <div class="flex justify-center">
+                <div class="w-full md:w-1/2">
+                    <div class="group bg-surface-container-lowest p-8 flex flex-lar col justify-between h-[320px] transition-all duration-300 hover:shadow-[0px_12px_32px_rgba(26,28,28,0.06)] relative overflow-hidden border border-outline-variant/20">
+                        <div class="absolute top-0 right-0 w-16 h-16 bg-surface-container opacity-20 rotate-45 translate-x-8 -translate-y-8"></div>
+                        <div class="relative z-10">
+                            <div class="mb-6 inline-flex items-center justify-center w-12 h-12 bg-primary text-white">
+                                <span class="material-symbols-outlined">description</span>
+                            </div>
+                            <h3 class="font-headline text-xl font-bold text-primary mb-3 leading-tight">Règlement Intérieur</h3>
+                            <p class="text-sm text-on-surface-variant line-clamp-3">Les codes de conduite, l'étiquette du dojo et les engagements mutuels au sein de l'EJT Bruges.</p>
+                        </div>
+                        <button class="flex items-center gap-2 font-label text-xs font-black uppercase tracking-widest text-secondary group-hover:gap-4 transition-all">
+                            Télécharger <span class="material-symbols-outlined text-sm">download</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LIGNE 2 : DEUX BLOCS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="group bg-surface-container-lowest p-8 flex flex-col justify-between h-[320px] transition-all duration-300 hover:shadow-[0px_12px_32px_rgba(26,28,28,0.06)] relative overflow-hidden border border-outline-variant/20">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-secondary opacity-10 rotate-45 translate-x-8 -translate-y-8"></div>
+                    <div class="relative z-10">
+                        <div class="mb-6 inline-flex items-center justify-center w-12 h-12 bg-secondary text-white">
+                            <span class="material-symbols-outlined">assignment</span>
+                        </div>
+                        <h3 class="font-headline text-xl font-bold text-primary mb-3 leading-tight">Questionnaire médical</h3>
+                        <p class="text-sm text-on-surface-variant line-clamp-3">Formulaire de santé obligatoire pour toute nouvelle inscription ou renouvellement.</p>
+                    </div>
+                    <button class="flex items-center gap-2 font-label text-xs font-black uppercase tracking-widest text-secondary group-hover:gap-4 transition-all">
+                        Télécharger <span class="material-symbols-outlined text-sm">download</span>
+                    </button>
+                </div>
+                <div class="group bg-surface-container-lowest p-8 flex flex-col justify-between h-[320px] transition-all duration-300 hover:shadow-[0px_12px_32px_rgba(26,28,28,0.06)] relative overflow-hidden border border-outline-variant/20">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-primary opacity-10 rotate-45 translate-x-8 -translate-y-8"></div>
+                    <div class="relative z-10">
+                        <div class="mb-6 inline-flex items-center justify-center w-12 h-12 bg-primary text-white">
+                            <span class="material-symbols-outlined">fact_check</span>
+                        </div>
+                        <h3 class="font-headline text-xl font-bold text-primary mb-3 leading-tight">Attestation médicale</h3>
+                        <p class="text-sm text-on-surface-variant line-clamp-3">Certificat médical attestant de l'aptitude à la pratique du Judo en compétition.</p>
+                    </div>
+                    <button class="flex items-center gap-2 font-label text-xs font-black uppercase tracking-widest text-secondary group-hover:gap-4 transition-all">
+                        Télécharger <span class="material-symbols-outlined text-sm">download</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- LIGNE 3 : DEUX BLOCS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="group bg-surface-container-lowest p-8 flex flex-col justify-between h-[320px] transition-all duration-300 hover:shadow-[0px_12px_32px_rgba(26,28,28,0.06)] relative overflow-hidden border border-outline-variant/20">
+                    <div class="relative z-10">
+                        <div class="mb-6 inline-flex items-center justify-center w-12 h-12 bg-primary text-white">
+                            <span class="material-symbols-outlined">assignment</span>
+                        </div>
+                        <h3 class="font-headline text-xl font-bold text-primary mb-3 leading-tight">Questionnaire médical V2</h3>
+                        <p class="text-sm text-on-surface-variant line-clamp-3">Version mise à jour pour la saison 2026-2027.</p>
+                    </div>
+                    <button class="flex items-center gap-2 font-label text-xs font-black uppercase tracking-widest text-secondary group-hover:gap-4 transition-all">
+                        Télécharger <span class="material-symbols-outlined text-sm">download</span>
+                    </button>
+                </div>
+                <div class="group bg-surface-container-lowest p-8 flex flex-col justify-between h-[320px] transition-all duration-300 hover:shadow-[0px_12px_32px_rgba(26,28,28,0.06)] relative overflow-hidden border border-outline-variant/20">
+                    <div class="relative z-10">
+                        <div class="mb-6 inline-flex items-center justify-center w-12 h-12 bg-secondary text-white">
+                            <span class="material-symbols-outlined">fact_check</span>
+                        </div>
+                        <h3 class="font-headline text-xl font-bold text-primary mb-3 leading-tight">Attestation médicale V2</h3>
+                        <p class="text-sm text-on-surface-variant line-clamp-3">Document de suivi médical actualisé.</p>
+                    </div>
+                    <button class="flex items-center gap-2 font-label text-xs font-black uppercase tracking-widest text-secondary group-hover:gap-4 transition-all">
+                        Télécharger <span class="material-symbols-outlined text-sm">download</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section> <!-- FIN DE LA GRILLE DES DOCUMENTS -->
+
+    <!-- Document Deposit Section -->
+    <section class="bg-surface-container-low p-8 md:p-16 relative overflow-hidden">
+        <div class="absolute inset-0 tatami-texture opacity-20 pointer-events-none"></div>
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5">
+                <h2 class="font-headline text-4xl font-bold text-primary tracking-tight mb-6">Dépôt de Documents</h2>
+                <p class="text-on-surface-variant mb-8 leading-relaxed">
+                    Soumettez vos certificats médicaux ou dossiers d'inscription complets en toute sécurité.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
+                        <div class="font-bold text-primary">Certificat Médical</div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
+                        <div class="font-bold text-primary">Dossier de Bourse</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="lg:col-span-7">
+                <div class="bg-white p-2 shadow-sm">
+                    <div class="border-2 border-dashed border-outline-variant p-10 md:p-20 text-center flex flex-col items-center justify-center transition-colors hover:bg-surface-container-low cursor-pointer">
+                        <div class="w-16 h-16 rounded-full bg-surface-container mb-6 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-3xl text-primary">upload_file</span>
+                        </div>
+                        <h4 class="font-headline text-xl font-bold text-primary mb-2">Glisser-déposer vos fichiers ici</h4>
+                        <p class="text-on-surface-variant mb-8 text-sm max-w-xs mx-auto">Formats acceptés : PDF, JPG, PNG. Taille maximale 10MB.</p>
+                        <button class="bg-secondary text-white px-8 py-4 font-label font-bold text-sm tracking-widest transition-transform hover:scale-105 active:scale-95 shadow-lg">
+                            DÉPOSER UN FICHIER
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  </main>
+    </div> 
+
+    <!-- 2. SÉPARATION : Un espace visuel net avec une bordure légère -->
+		<div class="w-full h-20 bg-slate-50 border-t border-slate-200"></div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER — commun à toutes les pages
+════════════════════════════════════════════════════ -->
+
+<footer class="bg-slate-100 dark:bg-slate-900 border-t border-transparent">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-12 w-full px-8 py-16 max-w-7xl mx-auto">
+    <div class="col-span-1 md:col-span-2">
+      <h4 class="text-xl font-black tracking-tighter text-indigo-950 dark:text-indigo-100 font-headline mb-6">EJT BRUGES</h4>
+      <p class="text-indigo-900/60 dark:text-indigo-300/60 max-w-md text-sm leading-relaxed mb-8">
+        Le club de judo de référence à Bruges. Un enseignement de qualité, le respect des traditions et l'ambition sportive pour tous les âges. Affilié à la Fédération Française de Judo.
+      </p>
+      <div class="flex gap-4">
+        <a class="text-indigo-950 hover:text-secondary cursor-pointer"><span class="material-symbols-outlined">social_leaderboard</span></a>
+        <a class="text-indigo-950 hover:text-secondary cursor-pointer"><span class="material-symbols-outlined">camera</span></a>
+      </div>
+    </div>
+    <div>
+      <h5 class="text-xs uppercase tracking-widest font-bold font-label text-red-700 dark:text-red-600 mb-6">Légal</h5>
+      <ul class="space-y-4">
+        <li><a class="text-sm text-indigo-900/60 dark:text-indigo-300/60 hover:text-indigo-950 transition-all cursor-pointer">Politique de confidentialité</a></li>
+        <li><a class="text-sm text-indigo-900/60 dark:text-indigo-300/60 hover:text-indigo-950 transition-all cursor-pointer">Conditions d'utilisation</a></li>
+        <li><a class="text-sm text-indigo-900/60 dark:text-indigo-300/60 hover:text-indigo-950 transition-all cursor-pointer">Règlement des compétitions</a></li>
+        <li><a class="text-sm text-indigo-900/60 dark:text-indigo-300/60 hover:text-indigo-950 transition-all cursor-pointer">Protocole du <mark>tatami</mark></a></li>
       </ul>
     </div>
-  </div>
-
-  <!-- ══ PANEL 5 : CONTACTS ═══════════════════════════════════ -->
-  <div class="panel" id="p5">
-    <div class="alert a-info">
-      <strong>Contact n°1 :</strong> Représentant légal <em>(mineur)</em> ou Contact Personnel <em>(majeur)</em>.<br>
-      ‼️ <strong>Adhérents MAJEURS</strong> : notez votre propre contact en premier afin de recevoir les informations du club.
-    </div>
-    <div class="fields">
-
-      <div class="sec-label">Contact 1 — Représentant légal ou contact personnel (pour les majeurs) — Obligatoire</div>
-      <div class="field">
-        <label class="flabel">Qualité 1 <span class="req">*</span></label>
-        <p class="fdesc">Parents ; Époux/Épouse ; Concubin/Concubine ; Grand-parent</p>
-        <select class="finput" id="f-qualite1">
-          <option value="">— Choisissez —</option>
-          <option>Mère</option><option>Père</option><option>Époux/Épouse</option>
-          <option>Concubin/Concubine</option><option>Grand-parent</option><option>Personnel</option>
-        </select>
-        <div class="ferr" id="f-qualite1-e">Veuillez sélectionner une qualité</div>
-      </div>
-      <div class="field">
-        <label class="flabel" for="f-tel1">Numéro de téléphone 1 <span class="req">*</span></label>
-        <p class="fdesc">N'écrire qu'un seul numéro de téléphone !</p>
-        <input class="finput" type="tel" id="f-tel1" placeholder="06 12 34 56 78" autocomplete="tel"/>
-        <div class="ferr" id="f-tel1-e">Ce champ est obligatoire</div>
-      </div>
-      <div class="field">
-        <label class="flabel">Adresse mail 1</label>
-        <p class="fdesc">L'e-mail saisi à l'étape 1 est automatiquement utilisé comme adresse mail du contact 1.</p>
-        <input class="finput" id="f-mail1d" disabled style="background:#f0f4fb;color:var(--muted)" placeholder="(e-mail saisi à l'étape 1)"/>
-      </div>
-
-      <hr class="divider"/>
-
-      <div class="sec-label">Contact 2 — Urgence <span style="font-weight:400;font-size:.78rem;text-transform:none;color:var(--muted)"></span></div>
-      <p class="sec-sub">‼️ <strong>Majeurs</strong> : notez ici la personne à contacter en cas d'urgence.<br>⚠️ Toute adresse mail renseignée ici recevra les informations du club.</p>
-      <div class="field">
-        <label class="flabel">Qualité 2 <span class="req">*</span></label>
-        <select class="finput" id="f-qualite2">
-          <option value="">— Choisissez —</option>
-          <option>Mère</option><option>Père</option><option>Époux/Épouse</option>
-          <option>Concubin/Concubine</option><option>Grand-parent</option><option>Enfant</option>
-        </select>
-        <div class="ferr" id="f-qualite2-e">Veuillez sélectionner une qualité</div>
-      </div>
-      <div class="field">
-        <label class="flabel" for="f-tel2">Numéro de téléphone 2 <span class="req">*</span></label>
-        <p class="fdesc">N'écrire qu'un seul numéro de téléphone !</p>
-        <input class="finput" type="tel" id="f-tel2" placeholder="06 12 34 56 78"/>
-        <div class="ferr" id="f-tel2-e">Ce champ est obligatoire</div>
-      </div>
-      <div class="field">
-        <label class="flabel" for="f-mail2">Adresse mail 2</label>
-        <input class="finput" type="email" id="f-mail2" placeholder="contact@exemple.fr" inputmode="email"/>
-        <div class="ferr" id="f-mail2-e">Veuillez entrer une adresse e-mail valide</div>
-      </div>
-
-      <hr class="divider"/>
-
-      <div class="sec-label">Contact 3 <span style="font-weight:400;font-size:.78rem;text-transform:none;color:var(--muted)">(facultatif)</span></div>
-      <div class="field">
-        <label class="flabel">Qualité 3</label>
-        <select class="finput" id="f-qualite3">
-          <option value="">— Optionnel —</option>
-          <option>Mère</option><option>Père</option><option>Époux/Épouse</option>
-          <option>Concubin/Concubine</option><option>Grand-parent</option><option>Enfant</option>
-        </select>
-      </div>
-      <div class="field">
-        <label class="flabel" for="f-tel3">Numéro de téléphone 3</label>
-        <p class="fdesc">N'écrire qu'un seul numéro de téléphone !</p>
-        <input class="finput" type="tel" id="f-tel3" placeholder="Optionnel"/>
-      </div>
-      <div class="field">
-        <label class="flabel" for="f-mail3">Adresse mail 3</label>
-        <input class="finput" type="email" id="f-mail3" placeholder="Optionnel" inputmode="email"/>
-        <div class="ferr" id="f-mail3-e">Format d'e-mail invalide</div>
-      </div>
+    <div>
+      <h5 class="text-xs uppercase tracking-widest font-bold font-label text-red-700 dark:text-red-600 mb-6">Contact</h5>
+      <address class="not-italic text-sm text-indigo-900/60 dark:text-indigo-300/60 space-y-2">
+        <p>Dojo Municipal de Bruges</p>
+        <p>Avenue des Sports, 33520 Bruges</p>
+        <p class="pt-4 font-bold text-indigo-950"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2746434a4e4967424d53455552404254094542">ejt.esbruges@gmail.com</a></p>
+      </address>
     </div>
   </div>
-
-  <!-- ══ PANEL 6 : RÈGLEMENT INTÉRIEUR ════════════════════════ -->
-  <div class="panel" id="p6">
-    <div class="alert a-info">
-      Le règlement sera envoyé après l'inscription au format PDF à votre adresse mail. Il est consultable en permanence sur <a href="https://drive.google.com/file/d/1hhBw0s1Jh9KyzzE-hmmJASCELPjbhT3b/view" target="_blank" style="color:var(--navy);font-weight:600">notre site</a>.
-    </div>
-    <div class="fields">
-      <div class="field">
-        <label class="flabel">Validation du règlement intérieur <span class="req">*</span></label>
-        <div class="choices">
-          <label class="choice" id="cb-reglement">
-            <input type="checkbox" id="f-reglement"/>
-            <div class="csq"></div>
-            <div class="ctext">Je certifie avoir lu et j'accepte les conditions du règlement intérieur</div>
-          </label>
-        </div>
-        <div class="ferr" id="f-reglement-e">Vous devez accepter le règlement intérieur pour continuer</div>
-      </div>
+  <div class="max-w-7xl mx-auto px-8 py-8 border-t border-indigo-950/5 flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="text-xs font-bold tracking-widest font-label text-indigo-900/60 uppercase">© 2024 EJT BRUGES. EFFICACITÉ MAXIMALE, EFFORT MINIMAL.</p>
+    <div class="flex gap-8">
+      <span class="text-[10px] font-black text-secondary uppercase tracking-[0.2em]"><mark>KODOKAN</mark> AFFILIÉ</span>
+      <span class="text-[10px] font-black text-primary/40 uppercase tracking-[0.2em]"><mark>FFJDA</mark> ENREGISTRÉ</span>
     </div>
   </div>
+</footer>
 
-  <!-- ══ PANEL 7 : PAIEMENT ═══════════════════════════════════ -->
-  <div class="panel" id="p7">
-    <div class="alert a-info" style="font-size:.78rem">
-      <strong>Modes acceptés :</strong> <br>• espèces <br>• chèque <br>• 3 fois en chèque <br>• CB via HelloAsso.<br><br>
-      <strong>Encaissement des chèques cotisation :</strong><br>
-      • Annuel : <strong>vers le 05/11/2026</strong><br>
-      • 3 chèques : <strong>vers les 05/11/2026</strong> · <strong>15/01/2027</strong> · <strong>05/04/2027</strong> <br><br><strong>Les cotisations sont dues à l'année et à transmettre en début de saison lors de l'inscription.</strong> (cf règlement intérieur).<br>Pour tout problème lié à l'encaissement merci de nous contacter le plus rapidement possible. <br><br> <strong>‼️ Tout règlement qui ne sera pas à jour, entrainera le refus de pratique du judoka.</strong>
-    </div>
-    <div class="fields">
-        <label class="flabel">Validation des modalités de règlement <span class="req">*</span></label>
-        <div class="choices">
-          <label class="choice" id="cb-modalites">
-            <input type="checkbox" id="f-modalites"/>
-            <div class="csq"></div>
-            <div class="ctext">J'ai lu et j'accepte les conditions de règlement</div>
-          </label>
-        </div>
-        <div class="ferr" id="f-modalites-e">Vous devez valider les modalités de règlement</div>
-    </div>
-  </div>
+		
 
-  <!-- ══ PANEL 8 : ATTESTATION ════════════════════════════════ -->
-  <div class="panel" id="p8">
-    <div class="alert a-info" style="font-size:.79rem">
-    La facture ne pourra être établie qu'après réception de votre règlement en totalité (licence et cotisation).
-    <br>‼️ La facture sera adressée par mail à l'adresse fournie en début de formulaire.
-  </div>
-  <div class="fields">
-    <div class="field">
-      <label class="flabel">Demander une facture <span class="req">*</span></label>
-      <div class="choices" id="attest-g"></div>
-      <div class="ferr" id="attest-e">Veuillez faire un choix</div>
-    </div>
-  </div>
-  </div>
-
-  <!-- ══ PANEL 9 : AUTORISATIONS ══════════════════════════════ -->
-  <div class="panel" id="p9">
-    <div class="fields">
-      <div class="field">
-        <label class="flabel">J'autorise l'encadrement à transporter l'adhérent sur les lieux des manifestations (compétitions, sorties, etc…) <span class="req">*</span></label>
-        <div class="choices" id="atr-g"></div>
-        <div class="ferr" id="atr-e">Veuillez répondre à cette question</div>
-      </div>
-      <div class="field">
-        <label class="flabel">J'autorise l'ESB et l'EJT à utiliser les photos de l'adhérent pour la communication ou le bulletin d'information de la section ou de l'ESB (dont magazine Info Sports) <span class="req">*</span></label>
-        <div class="choices" id="aph-g"></div>
-        <div class="ferr" id="aph-e">Veuillez répondre à cette question</div>
-      </div>
-      <div class="field">
-        <label class="flabel">J'autorise l'encadrement, en cas de maladie ou d'accident, à prendre toutes les mesures d'urgence, y compris l'hospitalisation <span class="req">*</span></label>
-        <div class="choices" id="aur-g"></div>
-        <div class="ferr" id="aur-e">Veuillez répondre à cette question</div>
-      </div>
-      <div class="field">
-        <label class="flabel">J'autorise mon enfant à quitter seul le lieu de son activité <span class="req">*</span></label>
-        <p class="fdesc">Sans cette autorisation, aucun enfant mineur ne pourra quitter seul le lieu de son activité. Passé un délai raisonnable, l'enfant sera confié à la police municipale.</p>
-        <div class="choices" id="aqu-g"></div>
-        <div class="ferr" id="aqu-e">Veuillez répondre à cette question</div>
-      </div>
-      <div class="field">
-        <label class="flabel" for="f-confier">J'autorise les responsables de la section à confier mon enfant aux personnes désignées ci-après</label>
-        <p class="fdesc">Prénom NOM des personnes autorisées. Écrivez <em>Pas concerné</em> si adhérent majeur.</p>
-        <input class="finput" type="text" id="f-confier" placeholder="Pas concerné / Prénom NOM..."/>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ PANEL 10 : VALIDATION FINALE ═════════════════════════ -->
-  <div class="panel" id="p10">
-    <div class="alert a-info">
-      Vérifiez vos informations puis envoyez votre dossier.<br>
-      Après envoi, vous pouvez consulte le règlement <a href="https://sites.google.com/view/ejt-bruges" target="_blank" style="color:var(--navy);font-weight:600">notre site</a> et faites votre demande de licence sur
-      <a href="https://moncompte.ffjudo.com/prise-licence" target="_blank" style="color:var(--navy);font-weight:600">le site de la fédération</a>.
-    </div>
-    <div class="fields">
-      <div class="field">
-        <label class="flabel">Validation des informations <span class="req">*</span></label>
-        <div class="choices">
-          <label class="choice" id="cb-validation">
-            <input type="checkbox" id="f-validation"/>
-            <div class="csq"></div>
-            <div class="ctext">Je certifie que toutes les informations renseignées dans ce formulaire sont exactes</div>
-          </label>
-        </div>
-        <div class="ferr" id="f-validation-e">Vous devez certifier l'exactitude des informations</div>
-      </div>
-    </div>
-    <div class="err-global" id="err-global"></div>
-  </div>
-
-  <!-- ══ SUCCESS ═══════════════════════════════════════════════ -->
-  <div class="success-screen" id="success-screen">
-    <div class="success-icon">🥋</div>
-    <div class="success-title">Dossier envoyé !</div>
-    <p class="success-msg">
-      Merci pour votre inscription à l'EJT Bruges pour la saison 2026-2027.<br>
-      Vos réponses ont bien été enregistrées.<br><br>
-      En suivant ce lien, dans la partie <em>Information › Documents à télécharger</em>, vous aurez accès au règlement intérieur en PDF et pourrez faire votre demande de licence :
-    </p>
-    <a href="https://sites.google.com/view/ejt-bruges" target="_blank" style="color:var(--navy);font-weight:600;font-size:.9rem">
-      sites.google.com/view/ejt-bruges
-    </a>
-  </div>
-
-  <!-- NAV -->
-  <div class="nav-bar" id="nav-bar">
-    <button class="btn btn-s" id="btn-prev" style="display:none" onclick="go(-1)">← Retour</button>
-    <button class="btn btn-p" id="btn-next" onclick="go(1)">
-      <span class="blabel" id="btn-label">Continuer →</span>
-      <div class="spinner"></div>
-    </button>
-  </div>
-
-</div></div><!-- /card /page-wrap -->
-
+<!-- ═══════════════════════════════════════════════════
+     JAVASCRIPT — Routeur SPA
+════════════════════════════════════════════════════ -->
 <script>
-// ═══════════════════════════════════════════════════════
-// ⚠️  REMPLACEZ CETTE URL par l'URL de votre Apps Script
-// ═══════════════════════════════════════════════════════
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwoTpgYh2WQEPJ_m64y47Q9auuU8OIkbkvRKPYZnNvaF50Xzettoc2ADJ25vliWsHaetw/exec";
-
-// ── STEPS META ──────────────────────────────────────────
-const STEPS = [
-  {icon:"✉️", title:"Votre adresse e-mail",   sub:"Section 1 — Identification"},
-  {icon:"👤", title:"Identité du licencié",    sub:"Section 2 — Informations personnelles"},
-  {icon:"🏥", title:"Informations médicales",  sub:"Section 3 — Santé"},
-  {icon:"⚠️", title:"Information importante",  sub:"Section 4 — Licencié mineur"},
-  {icon:"📞", title:"Contacts",                sub:"Section 5 — Représentants et urgences"},
-  {icon:"📋", title:"Règlement intérieur",     sub:"Section 6 — Acceptation"},
-  {icon:"💳", title:"Paiement",                sub:"Section 7 — Modalités de règlement"},
-  {icon:"🧾", title:"Facture",           	   sub:"Section 8 — Demande de facture"},
-  {icon:"✅", title:"Autorisations",            sub:"Section 9 — Droits et autorisations"},
-  {icon:"🏁", title:"Validation finale",        sub:"Section 10 — Confirmation"},
-];
-
-// ── CHOICES ─────────────────────────────────────────────
-const CHX = {
-  cours:    ["JUDO - Mardi et Vendredi - 17h30 à 18h30","JUDO - Mardi et Vendredi - 18h30 à 20h00","JUDO - Mardi et Vendredi - 20h00 à 22h00","BABY JUDO - Mercredi - 17h30 à 18h30","JUJITSU - Mercredi - 19h30 à 21h00","Non Pratiquant"],
-  cert:     ["Attestation suite au questionnaire de santé","Sportif","Sportif de compétition","Non Pratiquant"],
-  attest:   ["Oui","Non"],
-  aut3:     ["OUI - Adhérent Mineur","OUI - Adhérent Majeur","NON"],
-  autQ:     ["OUI","NON","Pas Concerné (adhérent majeur)"],
-};
-
-// ── BUILD RADIOS ────────────────────────────────────────
-function buildR(gId, opts, name) {
-  document.getElementById(gId).innerHTML = opts.map(o =>
-    `<label class="choice" data-n="${name}" onclick="pickR(this)">
-       <input type="radio" name="${name}" value="${o}"/>
-       <div class="cdot"></div>
-       <div class="ctext">${o}</div>
-     </label>`).join('');
-}
-function pickR(el) {
-  const n = el.dataset.n;
-  document.querySelectorAll(`.choice[data-n="${n}"]`).forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');
-  el.querySelector('input').checked = true;
-  ge(n+'-e')?.classList.remove('show');
-}
-function rVal(n) { return document.querySelector(`input[name="${n}"]:checked`)?.value||''; }
-
-// ── CHECKBOXES ──────────────────────────────────────────
-function initCb(lblId,cbId) {
-  const cb = ge(cbId);
-  cb.addEventListener('change',()=>ge(lblId).classList.toggle('selected',cb.checked));
-}
-function cbV(id) { return !!ge(id)?.checked; }
-
-// ── DOM HELPERS ─────────────────────────────────────────
-const ge = id => document.getElementById(id);
-const val = id => ge('f-'+id)?.value?.trim()||'';
-const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-const isDate  = v => /^\d{2}\/\d{2}\/\d{4}$/.test(v);
-
-function showE(id) { ge(id)?.classList.add('err','show')||ge(id)?.classList.add('err'); ge(id+'-e')?.classList.add('show'); }
-function hideE(id) { ge(id)?.classList.remove('err'); ge(id)?.classList.add('ok'); ge(id+'-e')?.classList.remove('show'); }
-function se(id) { ge('f-'+id)?.classList.add('err'); ge('f-'+id+'-e')?.classList.add('show'); }
-function ce(id) { ge('f-'+id)?.classList.remove('err'); ge('f-'+id)?.classList.add('ok'); ge('f-'+id+'-e')?.classList.remove('show'); }
-
-function chkReq(id)   { if(!val(id))       { se(id); return false; } ce(id); return true; }
-function chkMail(id)  { const v=val(id); if(!v||!isEmail(v)) { se(id); return false; } ce(id); return true; }
-function chkR(n,eid)  { if(!rVal(n)) { ge(eid)?.classList.add('show'); return false; } ge(eid)?.classList.remove('show'); return true; }
-function chkCb(iid,eid){ if(!cbV(iid)) { ge(eid)?.classList.add('show'); return false; } ge(eid)?.classList.remove('show'); return true; }
-
-// ── VALIDATE ────────────────────────────────────────────
-function validate(s) {
-  let ok = true;
-  const f = () => { ok=false; };
-  if(s===1){ if(!chkMail('email'))  f(); }
-  if(s===2){
-    if(!chkReq('nom'))    f();
-    if(!chkReq('prenom')) f();
-    const dv=val('ddn'); if(!dv||!isDate(dv)){se('ddn');f();}else ce('ddn');
-    if(!chkReq('adresse'))f();
-    if(!chkReq('cp'))     f();
-    if(!chkReq('ville'))  f();
-    if(!chkR('cours','cours-e')) f();
+  const PAGES = ['home', 'club', 'classes', 'registration', 'documents'];
+  const NAV_ACTIVE   = 'text-red-700 dark:text-red-600 font-black border-b-2 border-red-700'.split(' ');
+  const NAV_INACTIVE = 'text-indigo-950 dark:text-indigo-300 font-medium hover:text-red-600'.split(' ');
+  function navigateTo(target) {
+    if (!PAGES.includes(target)) return;
+    PAGES.forEach(id => {
+      const el = document.getElementById('page-' + id);
+      if (el) el.classList.toggle('active', id === target);
+    });
+    document.querySelectorAll('.nav-link').forEach(link => {
+      const isActive = link.dataset.target === target;
+      NAV_ACTIVE.forEach(cls   => link.classList.toggle(cls, isActive));
+      NAV_INACTIVE.forEach(cls => link.classList.toggle(cls, !isActive));
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    history.pushState({ page: target }, '', '#' + target);
   }
-  if(s===3){ if(!chkR('cert','cert-e')) f(); }
-  if(s===5){
-    if(!chkReq('qualite1'))f();
-    if(!chkReq('tel1'))    f();
-    if(!chkReq('qualite2'))f();
-    if(!chkReq('tel2'))    f();
-    if(!chkMail('mail2'))  f();
-    const m3=val('mail3'); if(m3&&!isEmail(m3)){se('mail3');f();}else{ge('f-mail3')?.classList.remove('err');ge('f-mail3-e')?.classList.remove('show');}
-  }
-  if(s===6){ if(!chkCb('f-reglement','f-reglement-e'))  f(); }
-  if(s===7){ if(!chkCb('f-modalites','f-modalites-e')) f(); }
-  if(s===8){ if(!chkR('attest','attest-e')) f(); }
-  if(s===9){ if(!chkR('cours','cours-e')); if(!chkR('atr','atr-e')) f(); if(!chkR('aph','aph-e')) f(); if(!chkR('aur','aur-e')) f(); if(!chkR('aqu','aqu-e')) f(); }
-  if(s===10){ if(!chkCb('f-validation','f-validation-e')) f(); }
-  return ok;
-}
-
-// ── NAVIGATION ──────────────────────────────────────────
-let cur = 1;
-const TOT = 10;
-
-function goTo(n) {
-  ge('p'+cur).classList.remove('active');
-  cur = n;
-  ge('p'+cur).classList.add('active');
-  const pct = Math.round(cur/TOT*100);
-  ge('prog-fill').style.width = pct+'%';
-  ge('prog-label').textContent = `Étape ${cur} sur ${TOT}`;
-  ge('prog-pct').textContent   = pct+'%';
-  const s = STEPS[cur-1];
-  ge('hd-icon').textContent = s.icon;
-  ge('hd-title').textContent = s.title;
-  ge('hd-sub').textContent   = s.sub;
-  ge('btn-prev').style.display = cur>1?'':'none';
-  ge('btn-label').textContent = cur===TOT?'Envoyer le dossier ✓':'Continuer →';
-  ge('err-global')?.classList.remove('show');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-async function go(dir) {
-  if(dir===1){
-    if(!validate(cur)) return;
-    if(cur===TOT){ await submit(); return; }
-    goTo(cur+1);
-  } else {
-    if(cur>1) goTo(cur-1);
-  }
-}
-
-// ── SUBMIT ──────────────────────────────────────────────
-async function submit() {
-  if(!navigator.onLine){ showGErr('⚡ Connexion internet perdue. Vérifiez votre réseau.'); return; }
-  setLoad(true);
-  const email = val('email');
-  const data = {
-    email,
-    nom:           val('nom').toUpperCase(),
-    prenom:        val('prenom'),
-    dateNaissance: val('ddn'),
-    adresse:       val('adresse'),
-    codePostal:    val('cp'),
-    ville:         val('ville'),
-    coursLicencie: rVal('cours'),
-    certificatMedical:   rVal('cert'),
-    allergies:           val('allergie'),
-    traitementMedical:   val('traitement'),
-    qualite1:     ge('f-qualite1').value,
-    telephone1:   val('tel1'),
-    adresseMail1: email,
-    qualite2:     ge('f-qualite2').value,
-    telephone2:   val('tel2'),
-    adresseMail2: val('mail2'),
-    qualite3:     ge('f-qualite3').value,
-    telephone3:   val('tel3'),
-    adresseMail3: val('mail3'),
-    validationReglement:  cbV('f-reglement') ? 'certifie avoir lu et accepte les conditions du règlement intérieur' : '',
-    validationModalites:  cbV('f-modalites') ? "J'ai lu et j'accepte les conditions de règlement" : '',
-    demanderAttestation:  rVal('attest'),
-    autorisationTransport:rVal('atr'),
-    autorisationPhoto:    rVal('aph'),
-    autorisationUrgence:  rVal('aur'),
-    autorisationQuitter:  rVal('aqu'),
-    autorisationConfier:  val('confier'),
-    validationInfos:      cbV('f-validation') ? 'Je certifie que toutes les informations sont exactes' : '',
-    timestamp: new Date().toLocaleString('fr-FR'),
-  };
-  try {
-    await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-    showSuccess();
-  } catch(e) {
-    console.error(e);
-    setLoad(false);
-    showGErr(navigator.onLine ? '❌ Une erreur est survenue. Veuillez réessayer.' : '⚡ Connexion perdue pendant l\'envoi.');
-  }
-}
-
-function setLoad(on) { ge('btn-next').disabled=on; ge('btn-next').classList.toggle('loading',on); }
-function showGErr(m) { const b=ge('err-global'); b.textContent=m; b.classList.add('show'); }
-function showSuccess() {
-  ge('step-hd').style.display='none';
-  document.querySelectorAll('.panel').forEach(p=>p.style.display='none');
-  ge('nav-bar').style.display='none';
-  ge('success-screen').classList.add('show');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-// ── INIT ────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded',()=>{
-  buildR('cours-g', CHX.cours,  'cours');
-  buildR('cert-g',  CHX.cert,   'cert');
-  buildR('attest-g',CHX.attest, 'attest');
-  buildR('atr-g',   CHX.aut3,   'atr');
-  buildR('aph-g',   CHX.aut3,   'aph');
-  buildR('aur-g',   CHX.aut3,   'aur');
-  buildR('aqu-g',   CHX.autQ,   'aqu');
-  initCb('cb-reglement', 'f-reglement');
-  initCb('cb-modalites', 'f-modalites');
-  initCb('cb-validation','f-validation');
-  // Mirror email to contact 1 display
-  ge('f-email').addEventListener('input',function(){ ge('f-mail1d').value=this.value; });
-  // Auto-format date
-  ge('f-ddn').addEventListener('input',function(){
-    let v=this.value.replace(/\D/g,'').slice(0,8);
-    if(v.length>2) v=v.slice(0,2)+'/'+v.slice(2);
-    if(v.length>5) v=v.slice(0,5)+'/'+v.slice(5);
-    this.value=v;
-  });
-  // Live email validation
-  ['f-email','f-mail2'].forEach(id=>{
-    ge(id).addEventListener('blur',function(){
-      if(this.value&&!isEmail(this.value)) this.classList.add('err');
-      else if(this.value) this.classList.remove('err');
+  document.querySelectorAll('.nav-link, [data-target]').forEach(el => {
+    if (el.tagName === 'BUTTON') return;
+    el.addEventListener('click', () => {
+      const target = el.dataset.target;
+      if (target) navigateTo(target);
     });
   });
-});
-window.addEventListener('offline',()=>ge('offline-bar').classList.add('show'));
-window.addEventListener('online', ()=>ge('offline-bar').classList.remove('show'));
+  window.addEventListener('popstate', (e) => {
+    const page = e.state?.page || 'home';
+    navigateTo(page);
+  });
+  (function init() {
+    const hash = window.location.hash.replace('#', '');
+    const target = PAGES.includes(hash) ? hash : 'home';
+    navigateTo(target);
+  })();
 </script>
 </body>
 </html>

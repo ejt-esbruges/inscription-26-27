@@ -101,13 +101,6 @@
 		to   { opacity: 1; transform: translateY(0); }
 	  }
 
-	  /* ── Termes non-traduisibles surlignés en jaune ── */
-	  mark {
-		background-color: #fef08a;
-		color: inherit;
-		padding: 0 2px;
-		border-radius: 2px;
-	  }
 	  .tatami-texture {
 		background-image: radial-gradient(#c8c5d1 0.5px, transparent 0.5px);
 		background-size: 24px 24px;
@@ -127,12 +120,6 @@
   @keyframes pageFadeIn {
     from { opacity: 0; transform: translateY(6px); }
     to   { opacity: 1; transform: translateY(0); }
-  }
-  mark {
-    background-color: #fef08a;
-    color: inherit;
-    padding: 0 2px;
-    border-radius: 2px;
   }
 
   /* ══ EN-TÊTE FORMULAIRE (barre sticky dans la section) ══════ */
@@ -568,6 +555,123 @@
   }
   #offline-bar.show { transform: translateY(0); }
 
+  /* ══════════════════════════════════════════════════
+     MODALE FLOTTANTE — Mentions Légales & Confidentialité
+  ══════════════════════════════════════════════════ */
+  .legal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    animation: legalFadeIn 0.25s ease;
+  }
+  .legal-overlay.open { display: flex; }
+  @keyframes legalFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .legal-card {
+    background: #ffffff;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 700px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 80px rgba(23, 17, 80, 0.25),
+                0 0 0 1px rgba(23, 17, 80, 0.06);
+    overflow: hidden;
+    animation: legalCardIn 0.3s cubic-bezier(.4,0,.2,1);
+  }
+  @keyframes legalCardIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .legal-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.4rem;
+    border-bottom: 1px solid #e2e2e2;
+    background: linear-gradient(135deg, #171150 0%, #2d2966 100%);
+    border-left: 4px solid #b51a1b;
+    flex-shrink: 0;
+  }
+  .legal-card-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.02em;
+  }
+  .legal-card-close {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+  .legal-card-close:hover { background: rgba(181, 26, 27, 0.9); }
+  .legal-card-body {
+    padding: 1.5rem 1.6rem 2rem;
+    overflow-y: auto;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #1a1c1c;
+  }
+  .legal-card-body h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #171150;
+    margin-top: 1.4rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.01em;
+  }
+  .legal-card-body h3:first-of-type { margin-top: 0; }
+  .legal-card-body p { margin-bottom: 0.7rem; }
+  .legal-card-body ul {
+    margin: 0.4rem 0 0.8rem 1.2rem;
+    list-style: disc;
+  }
+  .legal-card-body li { margin-bottom: 0.25rem; }
+  .legal-card-body a {
+    color: #b51a1b;
+    text-decoration: underline;
+  }
+  .legal-card-body hr {
+    border: none;
+    border-top: 1px solid #e2e2e2;
+    margin: 1.2rem 0;
+  }
+  .legal-placeholder {
+    background: #fef9c3;
+    padding: 0 4px;
+    border-radius: 3px;
+    font-weight: 600;
+    color: #713f12;
+  }
+  .legal-update-date {
+    font-style: italic;
+    color: #787681;
+    font-size: 0.82rem;
+    margin-top: 1.5rem;
+  }
+
 </style>
 	</head>
 	<body class="bg-surface text-on-surface font-body selection:bg-secondary selection:text-white">
@@ -578,7 +682,7 @@
 	════════════════════════════════════════════════════ -->
 	<nav id="main-nav" class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl top-0 sticky z-50 shadow-xl shadow-indigo-950/5 dark:shadow-none">
 	  <div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
-		<a class="flex items-center gap-3 text-2xl font-black tracking-tighter text-indigo-950 dark:text-indigo-100 font-headline cursor-pointer" data-target="home"><img src="logo_EJT_cercle_2024.png" style="height:42px;width:auto;flex-shrink:0;" alt="Logo EJT"/>EJT BRUGES</a>
+		<a class="flex items-center gap-3 text-2xl font-black tracking-tighter text-indigo-950 dark:text-indigo-100 font-headline cursor-pointer" data-target="home"><img src="https://github.com/ejt-esbruges/inscription-26-27/blob/ff7a86f68a760e081a5a9081fca93f88afc3d40e/logo_EJT_cercle_2024.png" style="height:42px;width:auto;flex-shrink:0;" alt="Logo EJT"/>EJT BRUGES</a>
 		<div class="hidden md:flex items-center gap-10">
 		  <a class="nav-link font-medium text-xs uppercase tracking-widest font-label transition-colors duration-300 cursor-pointer" data-target="home">Accueil</a>
 		  <a class="nav-link font-medium text-xs uppercase tracking-widest font-label transition-colors duration-300 cursor-pointer" data-target="club">Club</a>
@@ -638,7 +742,7 @@
           </div>
           <h4 class="text-2xl font-black font-headline text-primary group-hover:text-white mb-4 tracking-tight">DISCIPLINE</h4>
           <p class="text-on-surface-variant group-hover:text-on-primary-container leading-relaxed">
-            Le contrôle de soi et le respect des règles forment la base de notre enseignement sur et en dehors du <mark>tatami</mark>.
+            Le contrôle de soi et le respect des règles forment la base de notre enseignement sur et en dehors du tatami.
           </p>
         </div>
         <div class="bg-surface-container-low p-10 group hover:bg-primary transition-colors duration-500">
@@ -663,7 +767,10 @@
     </div>
   </section>
 
-  <section class="bg-surface-container-low ma-spacing">
+<!-- ════════════════════════════════════════════════════
+       SECTION DERNIÈRES ACTUALITÉS
+  ════════════════════════════════════════════════════ -->
+  <section class="bg-surface-container-low pt-24 pb-6 px-8">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-20">
       <div class="md:w-1/3">
         <h2 class="text-xs font-black tracking-[0.4em] uppercase text-secondary mb-4">LE CLUB EN MOUVEMENT</h2>
@@ -673,27 +780,11 @@
           VOIR TOUT LE FLUX <span class="material-symbols-outlined">trending_flat</span>
         </a>
       </div>
-      <div class="md:w-2/3 space-y-4">
-        <article class="bg-white p-8 flex items-center justify-between shadow-sm hover:shadow-xl transition-shadow judo-belt-accent border-secondary">
-          <div>
-            <span class="text-[10px] font-bold text-secondary-container tracking-widest uppercase mb-2 block">Résultats Compétition</span>
-            <h4 class="text-xl font-bold font-headline text-primary">Open International de Bruges : 3 Médailles d'Or</h4>
-            <p class="text-on-surface-variant text-sm mt-2">Félicitations à notre équipe junior pour cette performance historique le week-end dernier.</p>
-          </div>
-          <div class="hidden sm:block">
-            <span class="material-symbols-outlined text-primary-container/20 text-5xl">military_tech</span>
-          </div>
-        </article>
-        <article class="bg-white p-8 flex items-center justify-between shadow-sm hover:shadow-xl transition-shadow judo-belt-accent border-primary">
-          <div>
-            <span class="text-[10px] font-bold text-primary tracking-widest uppercase mb-2 block">Événement Club</span>
-            <h4 class="text-xl font-bold font-headline text-primary">Stage de Noël avec Maître Tanaka</h4>
-            <p class="text-on-surface-variant text-sm mt-2">Une opportunité unique de perfectionner votre <mark>Ne-Waza</mark> avec un expert international.</p>
-          </div>
-          <div class="hidden sm:block">
-            <span class="material-symbols-outlined text-primary-container/20 text-5xl">calendar_today</span>
-          </div>
-        </article>
+      <div class="md:w-2/3" id="actus-container">
+        <div class="flex flex-col space-y-4">
+          <div class="text-on-surface-variant text-sm italic p-8 text-center">Chargement des actualités...</div>
+        </div>
+			
         <article class="bg-white p-8 flex items-center justify-between shadow-sm hover:shadow-xl transition-shadow judo-belt-accent border-tertiary-container">
           <div>
             <span class="text-[10px] font-bold text-on-tertiary-container tracking-widest uppercase mb-2 block">Vie du Club</span>
@@ -708,6 +799,34 @@
     </div>
   </section>
 
+<!-- ════════════════════════════════════════════════════
+       SECTION CALENDRIER LIGUE NOUVELLE-AQUITAINE
+  ════════════════════════════════════════════════════ -->
+  <section class="pt-6 pb-0 px-8 bg-surface">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col items-center text-center">
+        <h2 class="text-xs font-black tracking-[0.4em] uppercase text-secondary mb-4">L'Agenda Régional</h2>
+        <h3 class="text-5xl font-bold font-headline text-primary tracking-tighter mb-6">CALENDRIER DES ÉVÉNEMENTS</h3>
+        <p class="text-on-surface-variant text-lg leading-relaxed max-w-2xl mb-10 font-light">
+          Retrouvez tous les rendez-vous officiels de la Ligue Nouvelle-Aquitaine de Judo&nbsp;: compétitions, stages, passages de grade, formations et événements régionaux.
+        </p>
+
+        <a href="https://nouvelle-aquitaine-judo.ffjudo.com/evenement"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="group inline-flex items-center gap-4 bg-secondary text-white px-10 py-5 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300">
+          <span class="material-symbols-outlined text-3xl">calendar_month</span>
+          <span class="font-label text-sm uppercase tracking-[0.2em] font-bold">Calendrier des événements</span>
+          <span class="material-symbols-outlined text-2xl group-hover:translate-x-1 transition-transform">open_in_new</span>
+        </a>
+
+        <p class="text-xs text-on-surface-variant mt-4 italic">
+          Vous serez redirigé vers le site officiel de la Ligue Nouvelle-Aquitaine
+        </p>
+      </div>
+    </div>
+  </section>
+	
  <!-- SECTION GOOGLE MAPS — Remplace "Reintégrez l'élite" -->
 <section class="py-24 bg-surface">
   <div class="max-w-7xl mx-auto px-8">
@@ -762,10 +881,10 @@
       <div class="max-w-3xl">
         <span style="color: navajowhite;" class="font-label text-xs uppercase tracking-[0.3em] font-bold mb-4 block">Tradition &amp; Discipline</span>
         <h1 class="text-white text-7xl md:text-9xl font-headline font-bold tracking-tighter leading-[0.85] mb-8">
-          EJT ES Burges <br/><span class="text-outline-variant/30"></span>
+          EJT Burges <br/><span class="text-outline-variant/30"></span>
         </h1>
         <p class="text-white text-lg md:text-xl max-w-xl font-light leading-relaxed">
-          Fondé sur les principes du <mark>Kodokan</mark>, l'EJT Bruges est plus qu'un dojo. C'est une communauté dédiée à la recherche de la perfection technique et de l'équilibre mental.
+          Fondé sur les principes du Kodokan, l'EJT Bruges est plus qu'un dojo. C'est une communauté dédiée à la recherche de la perfection technique et de l'équilibre mental.
         </p>
       </div>
     </div>
@@ -780,8 +899,8 @@
         </div>
         <h2 class="text-5xl font-headline font-bold tracking-tighter text-primary mb-12">L'HÉRITAGE DU <br/>TATAMI BRUGEOIS.</h2>
         <div class="space-y-8 text-on-surface-variant leading-relaxed text-lg font-light">
-          <p>Depuis sa fondation au cœur de Bruges, notre club incarne la philosophie de Jigoro Kano. Ce qui a commencé comme un petit groupe de passionnés est devenu une institution respectée, formant des générations de judokas aux valeurs d'honneur et de respect.</p>
-          <p>Nous cultivons le « <mark>Seiryoku Zenyo</mark> » (efficacité maximale pour un effort minimal) non seulement comme une technique de combat, mais comme un art de vivre partagé par tous nos membres.</p>
+          <p>Depuis sa fondation au cœur de Bruges, notre club incarne la philosophie de . Ce qui a commencé comme un petit groupe de passionnés est devenu une institution respectée, formant des générations de judokas aux valeurs d'honneur et de respect.</p>
+          <p>Nous cultivons le « Seiryoku Zenyo » (efficacité maximale pour un effort minimal) non seulement comme une technique de combat, mais comme un art de vivre partagé par tous nos membres.</p>
         </div>
       </div>
       <div class="md:col-span-5 relative">
@@ -809,7 +928,7 @@
           <div class="aspect-[3/4] overflow-hidden mb-6 relative">
             <img alt="Prof1" class="w-full h-full object-cover filter contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA_YwkJY5yXJhFg_s2emdg4xm67WENlVZ8ElIwv6-bL2Q02UDgQsOxMr2jO-pij9M0Ebl8HZG6kVC_nUKqpbCmb72hu5_4j6QgB8AyljEslc9AIUanWCJ3fsbGPTNYd0L2J5ozuQAyLuXa52CUOo_zUaXlhWl89O341JXXIW3ExYHjKlPiwSg8Gzhc6upBUH6L_3UaQ38TQ60Ni68w8wbrO4bm8DzBM04yA5S8BIp-LEeqwYamE3Gr7gtX_vDNzb_Rq1mFK7RfhFg"/>
             <div class="absolute top-4 left-4">
-              <div class="bg-primary px-3 py-1 text-white font-label text-[10px] uppercase tracking-widest font-bold"><mark>Sensei</mark> Principal</div>
+              <div class="bg-primary px-3 py-1 text-white font-label text-[10px] uppercase tracking-widest font-bold">Sensei Principal</div>
             </div>
           </div>
           <div class="px-6 py-4">
@@ -820,7 +939,7 @@
                 <span class="text-secondary font-black text-xl">6ème DAN</span>
               </div>
             </div>
-            <p class="text-sm text-on-surface-variant leading-relaxed">Directeur technique, expert en <mark>Ne-Waza</mark>. Plus de 30 ans d'enseignement du Judo originel.</p>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Directeur technique, expert en Ne-Waza. Plus de 30 ans d'enseignement du Judo originel.</p>
           </div>
         </div>
         <div class="bg-surface-container-lowest p-2 group transition-all duration-500 hover:shadow-2xl">
@@ -850,7 +969,7 @@
                 <span class="text-secondary font-black text-xl">3ème DAN</span>
               </div>
             </div>
-            <p class="text-sm text-on-surface-variant leading-relaxed">Expert en <mark>Kata</mark> et self-défense. Veille à la transmission technique pure du style <mark>Kodokan</mark>.</p>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Expert en Kata et self-défense. Veille à la transmission technique pure du style Kodokan.</p>
           </div>
         </div>
       </div>
@@ -1087,9 +1206,93 @@
 	  
 	  
   </section>
-<span class="text-xs font-bold text-on-surface-variant">*Modes de paiement acceptés : Chèque, Espèces, CB via HelloAsso <br>** La cotisation est payable en plusieurs fois en Chèque ou en CB</span>
+	
+<!-- ════════════════════════════════════════════════════
+       MODALITÉS DE PAIEMENT + BOUTON HELLOASSO
+  ════════════════════════════════════════════════════ -->
+  <section class="flex flex-col items-center pb-16">
+    <div class="w-full max-w-4xl">
+
+      <h2 class="text-3xl font-bold tracking-tighter text-primary mb-7">MODALITÉS DE PAIEMENT</h2>
+
+      <!-- Grand bloc Modalités, style identique au bloc Judo -->
+      <div class="bg-surface-container-low p-8 rounded-lg border-l-4 border-secondary shadow-sm mb-6">
+        <p class="text-sm text-on-surface-variant mb-6">Nous acceptons plusieurs modes de règlement.<br> Vous pouvez utiliser différents moyen de paiement pour le règlement de la licence et celui de la cotisation. <br> Si vous souhaitez utiliser un moyen de paiement différent de ceux ci-dessous veuillez vous rapporcher d'un membre du bureau.</p>
+
+        <!-- Grille 2 colonnes : Licence + Cotisation côte à côte -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- LICENCE -->
+          <div class="bg-white p-6 rounded shadow-sm border border-outline-variant/20">
+            <p class="text-[16px] font-bold uppercase tracking-widest text-secondary mb-4">Licence</p>
+            <ul class="space-y-3">
+              <li class="flex items-center gap-3 border-b border-outline-variant/10 pb-2">
+                <span class="material-symbols-outlined text-secondary text-base">payments</span>
+                <span class="font-bold text-primary">Espèces</span>
+              </li>
+              <li class="flex items-center gap-3 border-b border-outline-variant/10 pb-2">
+                <span class="material-symbols-outlined text-secondary text-base">edit_note</span>
+                <span class="font-bold text-primary">Chèque</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-secondary text-base">credit_card</span>
+                <span class="font-bold text-primary">CB via HelloAsso</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- COTISATION -->
+          <div class="bg-white p-6 rounded shadow-sm border border-outline-variant/20">
+            <p class="text-[16px] font-bold uppercase tracking-widest text-secondary mb-4">Cotisation</p>
+            <ul class="space-y-3">
+              <li class="flex items-center gap-3 border-b border-outline-variant/10 pb-2">
+                <span class="material-symbols-outlined text-secondary text-base">payments</span>
+                <span class="font-bold text-primary">Espèces</span>
+              </li>
+              <li class="flex items-center gap-3 border-b border-outline-variant/10 pb-2">
+                <span class="material-symbols-outlined text-secondary text-base">edit_note</span>
+                <span class="font-bold text-primary">Chèque</span>
+              </li>
+              <li class="flex items-center gap-3 border-b border-outline-variant/10 pb-2">
+                <span class="material-symbols-outlined text-secondary text-base">edit_note</span>
+                <span class="font-bold text-primary">Chèque en 3 fois</span>
+              </li>
+              <li class="flex items-center gap-3 border-b border-outline-variant/10 pb-2">
+                <span class="material-symbols-outlined text-secondary text-base">credit_card</span>
+                <span class="font-bold text-primary">CB via HelloAsso</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-secondary text-base">credit_card</span>
+                <span class="font-bold text-primary">CB via HelloAsso en plusieurs fois</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bouton paiement HelloAsso (sous le bloc, pleine largeur) -->
+      <a href="https://www.helloasso.com/associations/ejt-es-bruges/adhesions/reglement-saison-2026-2027"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="group flex items-center justify-center gap-4 bg-secondary text-white p-6 rounded-lg shadow-lg hover:scale-[1.02] hover:shadow-2xl transition-all duration-300">
+        <span class="material-symbols-outlined text-3xl">credit_card</span>
+        <div class="flex flex-col items-start">
+          <span class="font-label text-xs uppercase tracking-[0.3em] font-bold opacity-80">Paiement sécurisé</span>
+          <span class="font-headline text-lg font-bold tracking-tight">Payer en CB via HelloAsso</span>
+        </div>
+        <span class="material-symbols-outlined text-2xl group-hover:translate-x-1 transition-transform">open_in_new</span>
+      </a>
+      <p class="text-center text-xs text-on-surface-variant mt-3 italic">
+        Vous serez redirigé vers la plateforme sécurisée HelloAsso
+      </p>
+
+    </div>
+  </section>
 </main>
 </div>
+	
+		
 <!-- /PAGE 03 -->
 
 
@@ -1097,9 +1300,6 @@
 <!-- ═══════════════════════════════════════════════════
 PAGE 04 — INSCRIPTIONS
 ════════════════════════════════════════════════════ -->
-<!-- ══════════════════════════════════════════════════════════
-     PAGE — INSCRIPTIONS
-══════════════════════════════════════════════════════════ -->
 <div id="page-registration" class="page-section active">
   <main class="max-w-7xl mx-auto px-8 py-16">
 
@@ -1306,45 +1506,82 @@ PAGE 04 — INSCRIPTIONS
     </section> <!-- FIN DE LA GRILLE DES DOCUMENTS -->
 
     <!-- Document Deposit Section -->
-    <section class="bg-surface-container-low p-8 md:p-16 relative overflow-hidden">
-        <div class="absolute inset-0 tatami-texture opacity-20 pointer-events-none"></div>
-        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5">
-                <h2 class="font-headline text-4xl font-bold text-primary tracking-tight mb-6">Dépôt de Documents</h2>
-                <p class="text-on-surface-variant mb-8 leading-relaxed">
-                    Soumettez vos certificats médicaux ou dossiers d'inscription complets en toute sécurité.
-                </p>
-                <ul class="space-y-4">
-                    <li class="flex items-start gap-4">
-                        <span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
-                        <div class="font-bold text-primary">Certificat Médical</div>
-                    </li>
-                    <li class="flex items-start gap-4">
-                        <span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
-                        <div class="font-bold text-primary">Attestation de Santé</div>
-                    </li>
-					<li class="flex items-start gap-4">
-                        <span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
-                        <div class="font-bold text-primary">Pass'Sport</div>
-                    </li>
-                </ul>
-            </div>
-            <div class="lg:col-span-7">
-                <div class="bg-white p-2 shadow-sm">
-                    <div class="border-2 border-dashed border-outline-variant p-10 md:p-20 text-center flex flex-col items-center justify-center transition-colors hover:bg-surface-container-low cursor-pointer">
-                        <div class="w-16 h-16 rounded-full bg-surface-container mb-6 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-3xl text-primary">upload_file</span>
-                        </div>
-                        <h4 class="font-headline text-xl font-bold text-primary mb-2">Glisser-déposer vos fichiers ici</h4>
-                        <p class="text-on-surface-variant mb-8 text-sm max-w-xs mx-auto">Formats acceptés : PDF, JPG, PNG. Taille maximale 10MB.</p>
-                        <button class="bg-secondary text-white px-8 py-4 font-label font-bold text-sm tracking-widest transition-transform hover:scale-105 active:scale-95 shadow-lg">
-                            DÉPOSER UN FICHIER
-                        </button>
-                    </div>
-                </div>
-            </div>
+<section class="bg-surface-container-low p-8 md:p-16 relative overflow-hidden">
+  <div class="absolute inset-0 tatami-texture opacity-20 pointer-events-none"></div>
+  <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+    <!-- Colonne gauche : présentation + champs identité -->
+    <div class="lg:col-span-5">
+      <h2 class="font-headline text-4xl font-bold text-primary tracking-tight mb-6">Dépôt de Documents</h2>
+      <p class="text-on-surface-variant mb-6 leading-relaxed">
+        Soumettez vos certificats médicaux ou attestations de santé en toute sécurité.
+      </p>
+      <ul class="space-y-3 mb-8">
+        <li class="flex items-start gap-3">
+          <span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
+          <div class="font-bold text-primary">Certificat Médical</div>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
+          <div class="font-bold text-primary">Attestation de Santé</div>
+        </li>
+      </ul>
+
+      <!-- Champs identité -->
+      <div class="space-y-3 bg-white p-5 rounded-lg shadow-sm">
+        <div>
+          <label class="flabel" for="dep-f-nom">NOM <span class="req">*</span></label>
+          <input class="finput" type="text" id="dep-f-nom" placeholder="DUPONT" autocomplete="family-name"/>
+          <div class="ferr" id="dep-f-nom-e">Ce champ est obligatoire</div>
         </div>
-    </section>
+        <div>
+          <label class="flabel" for="dep-f-prenom">Prénom <span class="req">*</span></label>
+          <input class="finput" type="text" id="dep-f-prenom" placeholder="Marie" autocomplete="given-name"/>
+          <div class="ferr" id="dep-f-prenom-e">Ce champ est obligatoire</div>
+        </div>
+        <div>
+          <label class="flabel" for="dep-f-type">Type de document <span class="req">*</span></label>
+          <select class="finput" id="dep-f-type">
+            <option value="">— Choisissez —</option>
+            <option value="Certificat Médical">Certificat Médical</option>
+            <option value="Attestation de Santé">Attestation de Santé</option>
+          </select>
+          <div class="ferr" id="dep-f-type-e">Veuillez sélectionner un type</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colonne droite : zone de dépôt -->
+    <div class="lg:col-span-7">
+      <div class="bg-white p-2 shadow-sm">
+        <div id="dep-dropzone" class="border-2 border-dashed border-outline-variant p-10 md:p-16 text-center flex flex-col items-center justify-center transition-colors hover:bg-surface-container-low cursor-pointer rounded-sm">
+          <div class="w-16 h-16 rounded-full bg-surface-container mb-6 flex items-center justify-center">
+            <span class="material-symbols-outlined text-3xl text-primary">upload_file</span>
+          </div>
+          <h4 class="font-headline text-xl font-bold text-primary mb-2">Glisser-déposer vos fichiers ici</h4>
+          <p class="text-on-surface-variant mb-6 text-sm max-w-xs mx-auto">Formats acceptés : PDF, JPG, PNG. Taille maximale 10MB par fichier.</p>
+          <button type="button" id="dep-btn-select" class="bg-secondary text-white px-8 py-4 font-label font-bold text-sm tracking-widest transition-transform hover:scale-105 active:scale-95 shadow-lg">
+            CHOISIR DES FICHIERS
+          </button>
+          <input type="file" id="dep-input-file" multiple accept=".pdf,.jpg,.jpeg,.png" style="display:none"/>
+        </div>
+
+        <!-- Liste des fichiers sélectionnés -->
+        <div id="dep-file-list" class="mt-4 space-y-2" style="display:none;"></div>
+
+        <!-- Bouton envoyer -->
+        <button type="button" id="dep-btn-send" class="w-full mt-4 bg-primary text-white px-8 py-4 font-label font-bold text-sm tracking-widest transition-transform hover:scale-105 active:scale-95 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2" style="display:none;">
+          <span id="dep-btn-send-label">📤 ENVOYER LES FICHIERS</span>
+          <div class="spinner"></div>
+        </button>
+
+        <!-- Messages état -->
+        <div id="dep-status" class="mt-4" style="display:none;"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
   </main>
     </div> 
 
@@ -1902,7 +2139,7 @@ PAGE 04 — INSCRIPTIONS
     <div class="col-span-1 md:col-span-2">
       <h4 class="text-xl font-black tracking-tighter text-indigo-950 dark:text-indigo-100 font-headline mb-6">EJT BRUGES</h4>
       <p class="text-indigo-900/60 dark:text-indigo-300/60 max-w-md text-sm leading-relaxed mb-8">
-        Le club de judo de référence à Bruges. Un enseignement de qualité, le respect des traditions et l'ambition sportive pour tous les âges. Affilié à la Fédération Française de Judo.
+        Le club de judo de Bruges. Un enseignement de qualité, le respect des traditions et l'ambition sportive pour tous à partir de 4 ans. <br>Affilié à la Fédération Française de Judo.
       </p>
       <div class="flex gap-4">
         <a class="text-indigo-950 hover:text-secondary cursor-pointer"><span class="material-symbols-outlined">social_leaderboard</span></a>
@@ -1912,26 +2149,26 @@ PAGE 04 — INSCRIPTIONS
     <div>
       <h5 class="text-xs uppercase tracking-widest font-bold font-label text-red-700 dark:text-red-600 mb-6">Légal</h5>
       <ul class="space-y-4">
-        <li><a class="text-sm text-indigo-900/60 dark:text-indigo-300/60 hover:text-indigo-950 transition-all cursor-pointer">Politique de confidentialité</a></li>
-        <li><a class="text-sm text-indigo-900/60 dark:text-indigo-300/60 hover:text-indigo-950 transition-all cursor-pointer">Conditions d'utilisation</a></li>
-        <li><a class="text-sm text-indigo-900/60 dark:text-indigo-300/60 hover:text-indigo-950 transition-all cursor-pointer">Règlement des compétitions</a></li>
-        <li><a class="text-sm text-indigo-900/60 dark:text-indigo-300/60 hover:text-indigo-950 transition-all cursor-pointer">Protocole du <mark>tatami</mark></a></li>
+        <li><a onclick="openLegal('mentions')" class="text-sm text-indigo-900/60 dark:text-indigo-300/60 hover:text-indigo-950 transition-all cursor-pointer">Mentions Légales</a></li>
+        <li><a onclick="openLegal('confidentialite')" class="text-sm text-indigo-900/60 dark:text-indigo-300/60 hover:text-indigo-950 transition-all cursor-pointer">Politique de confidentialité</a></li>
+        
+   
       </ul>
     </div>
     <div>
       <h5 class="text-xs uppercase tracking-widest font-bold font-label text-red-700 dark:text-red-600 mb-6">Contact</h5>
       <address class="not-italic text-sm text-indigo-900/60 dark:text-indigo-300/60 space-y-2">
-        <p>Dojo Municipal de Bruges</p>
-        <p>Avenue des Sports, 33520 Bruges</p>
+        <p>Complexe Galinier, Salle Jacques Majau</p>
+        <p>Avenue de Verdun, 33520 Bruges</p>
         <p class="pt-4 font-bold text-indigo-950"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2746434a4e4967424d53455552404254094542">ejt.esbruges@gmail.com</a></p>
       </address>
     </div>
   </div>
   <div class="max-w-7xl mx-auto px-8 py-8 border-t border-indigo-950/5 flex flex-col md:flex-row justify-between items-center gap-4">
-    <p class="text-xs font-bold tracking-widest font-label text-indigo-900/60 uppercase">© 2024 EJT BRUGES. EFFICACITÉ MAXIMALE, EFFORT MINIMAL.</p>
+    <p class="text-xs font-bold tracking-widest font-label text-indigo-900/60 uppercase">© 2024 EJT BRUGES.</p>
     <div class="flex gap-8">
-      <span class="text-[10px] font-black text-secondary uppercase tracking-[0.2em]"><mark>KODOKAN</mark> AFFILIÉ</span>
-      <span class="text-[10px] font-black text-primary/40 uppercase tracking-[0.2em]"><mark>FFJDA</mark> ENREGISTRÉ</span>
+      <span class="text-[10px] font-black text-secondary uppercase tracking-[0.2em]">AFFILIÉ FFJDA</span>
+      <span class="text-[10px] font-black text-primary/40 uppercase tracking-[0.2em]">Label Handisport</span>
     </div>
   </div>
 </footer>
@@ -2610,8 +2847,439 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('offline', () => document.getElementById('offline-bar').classList.add('show'));
   window.addEventListener('online',  () => document.getElementById('offline-bar').classList.remove('show'));
+	
+	// ════════════════════════════════════════
+//  DÉPÔT DE FICHIERS — Google Drive
+// ════════════════════════════════════════
+
+// ⚠️ COLLE ICI L'URL DE TON APPS SCRIPT (étape A.3)
+const DEPOT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw4kHsJ-2DcgHz4TRXN7WCtyPIXtOHSN0FSvxAQxK5IzCZplosL13ZsMotySXzkVHI3/exec";
+
+const DEPOT_MAX_SIZE  = 10 * 1024 * 1024; // 10 MB
+const DEPOT_ACCEPTED  = ['application/pdf','image/jpeg','image/jpg','image/png'];
+let depotFiles = []; // Buffer des fichiers sélectionnés
+
+const depGe = id => document.getElementById(id);
+
+function depFmtSize(bytes) {
+  if (bytes < 1024) return bytes + ' o';
+  if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' Ko';
+  return (bytes/(1024*1024)).toFixed(1) + ' Mo';
+}
+
+function depValidateFile(file) {
+  if (!DEPOT_ACCEPTED.includes(file.type)) {
+    return { ok: false, msg: `Format refusé (PDF, JPG, PNG uniquement)` };
+  }
+  if (file.size > DEPOT_MAX_SIZE) {
+    return { ok: false, msg: `Trop volumineux (max 10 Mo)` };
+  }
+  return { ok: true };
+}
+
+function depRenderList() {
+  const list = depGe('dep-file-list');
+  const sendBtn = depGe('dep-btn-send');
+  if (depotFiles.length === 0) {
+    list.style.display = 'none';
+    sendBtn.style.display = 'none';
+    return;
+  }
+  list.style.display = '';
+  sendBtn.style.display = 'flex';
+  list.innerHTML = depotFiles.map((f, i) => `
+    <div class="flex items-center justify-between gap-3 px-3 py-2 bg-surface-container-low rounded">
+      <div class="flex items-center gap-2 flex-1 min-w-0">
+        <span class="material-symbols-outlined text-primary text-base flex-shrink-0">description</span>
+        <span class="text-sm text-primary truncate" title="${f.name}">${f.name}</span>
+        <span class="text-xs text-on-surface-variant flex-shrink-0">${depFmtSize(f.size)}</span>
+      </div>
+      <button type="button" onclick="depRemoveFile(${i})" class="text-secondary hover:text-red-700 flex-shrink-0" title="Retirer">
+        <span class="material-symbols-outlined text-base">close</span>
+      </button>
+    </div>
+  `).join('');
+}
+
+function depRemoveFile(index) {
+  depotFiles.splice(index, 1);
+  depRenderList();
+}
+
+function depAddFiles(fileList) {
+  const errs = [];
+  Array.from(fileList).forEach(f => {
+    const v = depValidateFile(f);
+    if (v.ok) depotFiles.push(f);
+    else errs.push(`❌ ${f.name} — ${v.msg}`);
+  });
+  if (errs.length > 0) depShowStatus(errs.join('<br>'), 'error');
+  else depHideStatus();
+  depRenderList();
+}
+
+function depShowStatus(msg, type) {
+  const s = depGe('dep-status');
+  s.style.display = '';
+  const colors = {
+    success: 'bg-green-50 border-green-500 text-green-800',
+    error:   'bg-red-50 border-red-500 text-red-800',
+    info:    'bg-blue-50 border-blue-500 text-blue-800'
+  };
+  s.className = `mt-4 p-3 border-l-4 rounded text-sm ${colors[type] || colors.info}`;
+  s.innerHTML = msg;
+}
+
+function depHideStatus() {
+  depGe('dep-status').style.display = 'none';
+}
+
+function depValidateForm() {
+  let ok = true;
+  ['nom','prenom','type'].forEach(f => {
+    const el = depGe('dep-f-'+f);
+    const err = depGe('dep-f-'+f+'-e');
+    if (!el.value.trim()) {
+      el.classList.add('err');
+      err.classList.add('show');
+      ok = false;
+    } else {
+      el.classList.remove('err');
+      err.classList.remove('show');
+    }
+  });
+  if (depotFiles.length === 0) {
+    depShowStatus('⚠️ Veuillez ajouter au moins un fichier.', 'error');
+    ok = false;
+  }
+  return ok;
+}
+
+function depFileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload  = () => resolve(reader.result);
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(file);
+  });
+}
+
+async function depSendAll() {
+  if (!depValidateForm()) return;
+  if (!navigator.onLine) {
+    depShowStatus('⚡ Connexion internet perdue. Vérifiez votre réseau.', 'error');
+    return;
+  }
+  const btn = depGe('dep-btn-send');
+  const lbl = depGe('dep-btn-send-label');
+  btn.disabled = true;
+  btn.classList.add('loading');
+  lbl.textContent = '📤 Envoi en cours...';
+
+  const nom    = depGe('dep-f-nom').value.trim();
+  const prenom = depGe('dep-f-prenom').value.trim();
+  const type   = depGe('dep-f-type').value;
+  let success = 0, fail = 0;
+
+  for (let i = 0; i < depotFiles.length; i++) {
+    const file = depotFiles[i];
+    lbl.textContent = `📤 Envoi ${i+1}/${depotFiles.length}...`;
+    try {
+      const base64 = await depFileToBase64(file);
+      const payload = {
+        nom, prenom,
+        typeDocument: type,
+        nomFichier: file.name,
+        fichierBase64: base64,
+        timestamp: new Date().toLocaleString('fr-FR')
+      };
+      await fetch(DEPOT_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      });
+      success++;
+    } catch (e) {
+      console.error('Erreur envoi:', file.name, e);
+      fail++;
+    }
+  }
+
+  btn.classList.remove('loading');
+  if (fail === 0) {
+    depShowStatus(`✅ <strong>${success} fichier(s) envoyé(s) avec succès !</strong><br>Le club a bien reçu vos documents.`, 'success');
+    depotFiles = [];
+    depRenderList();
+    depGe('dep-f-nom').value = '';
+    depGe('dep-f-prenom').value = '';
+    depGe('dep-f-type').value = '';
+    btn.disabled = false;
+    lbl.textContent = '📤 ENVOYER LES FICHIERS';
+  } else {
+    depShowStatus(`⚠️ ${success} envoyé(s), ${fail} en échec. Veuillez réessayer pour les fichiers manquants.`, 'error');
+    btn.disabled = false;
+    lbl.textContent = '📤 RÉESSAYER';
+  }
+}
+
+// Initialisation des événements
+const depDropzone = depGe('dep-dropzone');
+const depInput    = depGe('dep-input-file');
+const depBtnSel   = depGe('dep-btn-select');
+
+depBtnSel.addEventListener('click', (e) => { e.stopPropagation(); depInput.click(); });
+depDropzone.addEventListener('click', () => depInput.click());
+depInput.addEventListener('change', (e) => { depAddFiles(e.target.files); depInput.value = ''; });
+
+depDropzone.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  depDropzone.classList.add('bg-surface-container-low');
+  depDropzone.style.borderColor = '#171150';
+});
+depDropzone.addEventListener('dragleave', () => {
+  depDropzone.classList.remove('bg-surface-container-low');
+  depDropzone.style.borderColor = '';
+});
+depDropzone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  depDropzone.classList.remove('bg-surface-container-low');
+  depDropzone.style.borderColor = '';
+  if (e.dataTransfer.files.length > 0) depAddFiles(e.dataTransfer.files);
 });
 
+depGe('dep-btn-send').addEventListener('click', depSendAll);
+});
+
+</script>
+
+
+<!-- ═══════════════════════════════════════════════════
+     MODALES LÉGALES (Mentions Légales + Confidentialité)
+════════════════════════════════════════════════════ -->
+
+<!-- Modale Mentions Légales -->
+<div class="legal-overlay" id="legal-mentions" onclick="if(event.target===this) closeLegal('mentions')">
+  <div class="legal-card">
+    <div class="legal-card-header">
+      <span class="legal-card-title">📜 Mentions Légales</span>
+      <button class="legal-card-close" onclick="closeLegal('mentions')" aria-label="Fermer">✕</button>
+    </div>
+    <div class="legal-card-body">
+
+      <h3>1. Éditeur du site</h3>
+      <p>Le site <strong>www.ejt-esbruges.fr</strong> <span class="legal-placeholder">[URL exacte à confirmer]</span> est édité par :</p>
+      <p>
+        <strong>Entente Sportive de Bruges — Section École de Judo Traditionnelle (EJT Bruges)</strong><br>
+        Association régie par la loi du 1<sup>er</sup> juillet 1901<br>
+        Siège social : <span class="legal-placeholder">[Adresse complète — Dojo Municipal, Avenue des Sports, 33520 Bruges]</span><br>
+        Numéro RNA : <span class="legal-placeholder">[W33XXXXXXXX]</span><br>
+        Numéro SIRET : <span class="legal-placeholder">[SIRET si existant]</span><br>
+        Téléphone : <span class="legal-placeholder">[Numéro du club]</span><br>
+        Adresse e-mail : <a href="mailto:ejt.esbruges@gmail.com">ejt.esbruges@gmail.com</a><br>
+        Directeur de la publication : <span class="legal-placeholder">[Prénom NOM du Président]</span>
+      </p>
+
+      <h3>2. Hébergeur du site</h3>
+      <p><span class="legal-placeholder">[À compléter selon l'hébergement réel — ex : OVH SAS, 2 rue Kellermann, 59100 Roubaix — Téléphone : 1007]</span></p>
+
+      <h3>3. Propriété intellectuelle</h3>
+      <p>L'ensemble des contenus présents sur ce site (textes, images, logos, vidéos, graphismes, mise en page) est la propriété exclusive de l'EJT Bruges, sauf mention contraire. Toute reproduction, représentation, modification, publication ou adaptation, totale ou partielle, est interdite sans l'autorisation écrite préalable du club.</p>
+      <p>Le logo « EJT Bruges » est la propriété exclusive de l'Entente Sportive de Bruges.</p>
+
+      <h3>4. Liens hypertextes</h3>
+      <p>Le site peut contenir des liens vers d'autres sites internet (Fédération Française de Judo, HelloAsso, Google Maps, etc.). L'EJT Bruges ne saurait être tenue responsable du contenu de ces sites externes.</p>
+      <p>Tout site souhaitant établir un lien vers le présent site doit en demander l'autorisation préalable par e-mail à <a href="mailto:ejt.esbruges@gmail.com">ejt.esbruges@gmail.com</a>.</p>
+
+      <h3>5. Responsabilité</h3>
+      <p>L'EJT Bruges met tout en œuvre pour fournir des informations exactes et à jour sur ce site. Cependant, le club ne peut garantir l'exhaustivité ou l'absence d'erreurs. Les informations relatives aux horaires, tarifs, dates de compétitions et événements sont susceptibles d'évoluer. Pour toute information officielle, contactez le club directement.</p>
+
+      <h3>6. Crédits</h3>
+      <p>
+        Conception et développement du site : <span class="legal-placeholder">[Prénom NOM ou « bureau de l'EJT Bruges »]</span><br>
+        Photographies : <span class="legal-placeholder">[Auteur / source à préciser]</span><br>
+        Polices : DM Sans, Inter (Google Fonts)
+      </p>
+
+      <h3>7. Contact</h3>
+      <p>Pour toute question relative au présent site ou à son contenu : <a href="mailto:ejt.esbruges@gmail.com">ejt.esbruges@gmail.com</a></p>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modale Politique de Confidentialité -->
+<div class="legal-overlay" id="legal-confidentialite" onclick="if(event.target===this) closeLegal('confidentialite')">
+  <div class="legal-card">
+    <div class="legal-card-header">
+      <span class="legal-card-title">🔐 Politique de Confidentialité</span>
+      <button class="legal-card-close" onclick="closeLegal('confidentialite')" aria-label="Fermer">✕</button>
+    </div>
+    <div class="legal-card-body">
+
+      <h3>1. Préambule</h3>
+      <p>L'EJT Bruges accorde une grande importance à la protection des données personnelles de ses adhérents et visiteurs. La présente politique a pour objectif de vous informer sur la manière dont vos données sont collectées, utilisées et protégées, conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679) et à la loi française « Informatique et Libertés » modifiée.</p>
+
+      <h3>2. Responsable du traitement</h3>
+      <p>
+        <strong>EJT Bruges</strong> (section de l'Entente Sportive de Bruges)<br>
+        <span class="legal-placeholder">[Adresse postale complète]</span><br>
+        E-mail : <a href="mailto:ejt.esbruges@gmail.com">ejt.esbruges@gmail.com</a>
+      </p>
+
+      <h3>3. Données collectées</h3>
+      <p><strong>Formulaire d'adhésion :</strong></p>
+      <ul>
+        <li>Identité : nom, prénom, date de naissance</li>
+        <li>Coordonnées : adresse postale, code postal, ville, téléphone, adresse e-mail</li>
+        <li>Informations relatives à la pratique : choix du cours, allergies, traitement médical éventuel</li>
+        <li>Coordonnées des contacts (parents, contacts d'urgence)</li>
+        <li>Autorisations (transport, prise de vue, urgence, etc.)</li>
+      </ul>
+      <p><strong>Formulaire de cours d'essai :</strong></p>
+      <ul>
+        <li>Identité : nom, prénom, date de naissance</li>
+        <li>Coordonnées : téléphone, adresse e-mail</li>
+        <li>Informations médicales facultatives</li>
+      </ul>
+      <p><strong>Dépôt de documents :</strong></p>
+      <ul>
+        <li>Identité (nom, prénom) et type de document transmis (certificat médical, attestation de santé)</li>
+      </ul>
+
+      <h3>4. Finalités du traitement</h3>
+      <p>Les données collectées sont utilisées exclusivement pour :</p>
+      <ul>
+        <li>La gestion administrative des adhésions et des inscriptions aux cours</li>
+        <li>La communication d'informations relatives à la vie du club</li>
+        <li>Le suivi médical et sécuritaire des adhérents</li>
+        <li>L'envoi de l'attestation d'inscription et de la facture</li>
+        <li>La déclaration des licenciés à la Fédération Française de Judo (FFJDA)</li>
+      </ul>
+      <p>Les données ne font l'objet d'aucune utilisation commerciale et ne sont jamais revendues à des tiers.</p>
+
+      <h3>5. Destinataires des données</h3>
+      <p>Les données collectées sont accessibles uniquement :</p>
+      <ul>
+        <li>Aux membres habilités du bureau de l'EJT Bruges</li>
+        <li>Aux enseignants et encadrants pour les besoins de la pratique sportive</li>
+        <li>À la Fédération Française de Judo (FFJDA) pour la gestion des licences</li>
+        <li>Aux prestataires techniques nécessaires au fonctionnement du site (Google Workspace, HelloAsso)</li>
+      </ul>
+
+      <h3>6. Durée de conservation</h3>
+      <p>Les données sont conservées pendant la durée d'adhésion de l'adhérent au club, augmentée de <strong>3 ans</strong> <span class="legal-placeholder">[durée à valider]</span> pour les besoins administratifs et comptables. Au-delà, elles sont supprimées ou anonymisées, sauf obligation légale contraire.</p>
+
+      <h3>7. Sécurité des données</h3>
+      <p>L'EJT Bruges met en œuvre les mesures techniques et organisationnelles nécessaires pour assurer la sécurité des données collectées : accès restreint via mots de passe, hébergement sécurisé (Google Workspace), transmission chiffrée (HTTPS).</p>
+
+      <h3>8. Vos droits</h3>
+      <p>Conformément au RGPD, vous disposez des droits suivants sur vos données :</p>
+      <ul>
+        <li><strong>Droit d'accès</strong> : connaître les données vous concernant</li>
+        <li><strong>Droit de rectification</strong> : corriger des données inexactes</li>
+        <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données</li>
+        <li><strong>Droit à la limitation</strong> du traitement</li>
+        <li><strong>Droit à la portabilité</strong> : récupérer vos données dans un format exploitable</li>
+        <li><strong>Droit d'opposition</strong> au traitement</li>
+        <li><strong>Droit de retirer votre consentement</strong> à tout moment</li>
+      </ul>
+      <p>Pour exercer ces droits, contactez-nous par e-mail : <a href="mailto:ejt.esbruges@gmail.com">ejt.esbruges@gmail.com</a></p>
+      <p>Vous pouvez également introduire une réclamation auprès de la <strong>CNIL</strong> (Commission Nationale de l'Informatique et des Libertés) : <a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a></p>
+
+      <h3>9. Cookies</h3>
+      <p>Le présent site n'utilise pas de cookies de traçage publicitaire. Les seuls cookies éventuellement utilisés sont des cookies techniques nécessaires au bon fonctionnement du site, exemptés de consentement au sens de la directive ePrivacy.</p>
+
+      <h3>10. Modification de la politique</h3>
+      <p>La présente politique de confidentialité peut être modifiée à tout moment pour tenir compte des évolutions légales, réglementaires ou techniques.</p>
+
+      <p class="legal-update-date">Dernière mise à jour : <span class="legal-placeholder">[JJ/MM/AAAA]</span></p>
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // Ouvrir / fermer les modales légales
+  function openLegal(id) {
+    document.getElementById('legal-' + id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLegal(id) {
+    document.getElementById('legal-' + id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Fermeture avec la touche Echap
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.legal-overlay.open').forEach(function(el) {
+        el.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+</script>
+
+<script>
+(function() {
+  const ACTUS_URL = "https://script.google.com/macros/s/AKfycbznjHMAfwNvBkbE8oxuVo--kz834WuBYA76yfP7A1YfFesxAYjKJX5mRe66TSbOGfzGjA/exec";
+
+  const STYLES = {
+    "Événement Club":        { border: "border-primary",       label: "text-primary",       icon: "calendar_today" },
+    "Vie du Club":           { border: "border-green-600",     label: "text-green-700",     icon: "groups" },
+    "Résultats Compétition": { border: "border-orange-500",    label: "text-orange-600",    icon: "military_tech" },
+    "Important":             { border: "border-secondary",     label: "text-secondary",     icon: "priority_high" },
+  };
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+  }
+
+  function buildCard(actu) {
+    const style = STYLES[actu.categorie] || STYLES["Vie du Club"];
+    const prefix = actu.categorie === "Important" ? "⚠️ " : "";
+    return `
+      <article class="bg-white p-8 flex items-center justify-between shadow-sm hover:shadow-xl transition-shadow judo-belt-accent ${style.border}">
+        <div>
+          <span class="text-[10px] font-bold ${style.label} tracking-widest uppercase mb-2 block">${escapeHtml(actu.categorie)}</span>
+          <h4 class="text-xl font-bold font-headline text-primary">${prefix}${escapeHtml(actu.titre)}</h4>
+          <p class="text-on-surface-variant text-sm mt-2">${escapeHtml(actu.description)}</p>
+        </div>
+        <div class="hidden sm:block">
+          <span class="material-symbols-outlined text-primary-container/20 text-5xl">${style.icon}</span>
+        </div>
+      </article>`;
+  }
+
+  function render(actus) {
+    const container = document.getElementById('actus-container');
+    if (!container) return;
+    if (!actus || actus.length === 0) {
+      container.innerHTML = '<div class="flex flex-col space-y-4"><p class="text-on-surface-variant text-sm italic p-8 text-center">Aucune actualité pour le moment.</p></div>';
+      return;
+    }
+    container.innerHTML = '<div class="flex flex-col space-y-4">' + actus.map(buildCard).join('') + '</div>';
+  }
+
+  function loadActus() {
+    fetch(ACTUS_URL)
+      .then(r => r.json())
+      .then(json => {
+        if (json && json.success) render(json.data);
+        else throw new Error(json && json.error || 'Réponse invalide');
+      })
+      .catch(err => {
+        console.error('Actus error:', err);
+        const c = document.getElementById('actus-container');
+        if (c) c.innerHTML = '<div class="text-on-surface-variant text-sm italic p-8 text-center">Actualités indisponibles. <button onclick="location.reload()" class="text-secondary font-bold underline">Réessayer</button></div>';
+      });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadActus);
+  else loadActus();
+})();
 </script>
 
 </body>

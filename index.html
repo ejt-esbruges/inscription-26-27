@@ -788,27 +788,54 @@
 <!-- ════════════════════════════════════════════════════
        SECTION CALENDRIER LIGUE NOUVELLE-AQUITAINE
   ════════════════════════════════════════════════════ -->
+  <!-- ════════════════════════════════════════════════════
+       SECTION CALENDRIER LIGUE NOUVELLE-AQUITAINE
+  ════════════════════════════════════════════════════ -->
   <section class="pt-6 pb-0 px-8 bg-surface">
     <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col items-center text-center">
-        <h2 class="text-xs font-black tracking-[0.4em] uppercase text-secondary mb-4">L'Agenda Régional</h2>
-        <h3 class="text-5xl font-bold font-headline text-primary tracking-tighter mb-6">CALENDRIER DES ÉVÉNEMENTS</h3>
-        <p class="text-on-surface-variant text-lg leading-relaxed max-w-2xl mb-10 font-light">
-          Retrouvez tous les rendez-vous officiels de la Ligue Nouvelle-Aquitaine de Judo&nbsp;: compétitions, stages, passages de grade, formations et événements régionaux.
-        </p>
+      <div class="flex flex-col items-center text-center mb-12">
+        <h2 class="text-xs font-black tracking-[0.4em] uppercase text-secondary mb-4">Les Agendas</h2>
+        <h3 class="text-5xl font-bold font-headline text-primary tracking-tighter mb-6">CALENDRIERs DES ÉVÉNEMENTS</h3>
+      </div>
 
-        <a href="https://nouvelle-aquitaine-judo.ffjudo.com/evenement"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="group inline-flex items-center gap-4 bg-secondary text-white px-10 py-5 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300">
-          <span class="material-symbols-outlined text-3xl">calendar_month</span>
-          <span class="font-label text-sm uppercase tracking-[0.2em] font-bold">Calendrier des événements</span>
-          <span class="material-symbols-outlined text-2xl group-hover:translate-x-1 transition-transform">open_in_new</span>
-        </a>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-        <p class="text-xs text-on-surface-variant mt-4 italic">
-          Vous serez redirigé vers le site officiel de la Ligue Nouvelle-Aquitaine
-        </p>
+        <!-- BLOC 1 -->
+        <div class="flex flex-col items-center text-center bg-surface-container-lowest p-8 rounded-lg shadow-md">
+          <p class="text-on-surface-variant text-base leading-relaxed mb-8 font-light">
+            Retrouvez tous les rendez-vous officiels du Comité Départemental de la Gironde &nbsp;: compétitions, stages, passages de grade, formations et événements.
+          </p>
+          <a href="https://www.judogironde.fr/calendrier"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="group inline-flex items-center gap-4 bg-secondary text-white px-8 py-4 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300">
+            <span class="material-symbols-outlined text-3xl">calendar_month</span>
+            <span class="font-label text-sm uppercase tracking-[0.2em] font-bold">Calendrier de la Gironde</span>
+            <span class="material-symbols-outlined text-2xl group-hover:translate-x-1 transition-transform">open_in_new</span>
+          </a>
+          <p class="text-xs text-on-surface-variant mt-4 italic">
+            Vous serez redirigé vers le site officiel du Comité de la Gironde
+          </p>
+        </div>
+
+        <!-- BLOC 2 -->
+        <div class="flex flex-col items-center text-center bg-surface-container-lowest p-8 rounded-lg shadow-md">
+          <p class="text-on-surface-variant text-base leading-relaxed mb-8 font-light">
+            Retrouvez tous les rendez-vous officiels de la Ligue Nouvelle-Aquitaine de Judo&nbsp;: compétitions, stages, passages de grade, formations et événements.
+          </p>
+          <a href="https://nouvelle-aquitaine-judo.ffjudo.com/evenement"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="group inline-flex items-center gap-4 bg-secondary text-white px-8 py-4 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300">
+            <span class="material-symbols-outlined text-3xl">calendar_month</span>
+            <span class="font-label text-sm uppercase tracking-[0.2em] font-bold">Calendrier de la Nouvelle-Aquitaine</span>
+            <span class="material-symbols-outlined text-2xl group-hover:translate-x-1 transition-transform">open_in_new</span>
+          </a>
+          <p class="text-xs text-on-surface-variant mt-4 italic">
+            Vous serez redirigé vers le site officiel de la Ligue Nouvelle-Aquitaine
+          </p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1363,10 +1390,10 @@ PAGE 04 — INSCRIPTIONS
     </div>
 
     <br>
-    <p class="mt-8 text-xl text-on-surface-variant max-w-none font-light">
+    <p class="mt-8 text-2xl text-on-surface-variant max-w-none font-light">
       Suivez les étapes 1 et 2 pour demander votre licence et vous inscrire au Judo, au Babyjudo ou au Jujitsu.<sup>*</sup><br><br>Vous pouvez aller à l'étape 3 pour remplir le formulaire pour faire 1 cours d'essai gratuit.
     </p>
-    <p class="mt-8 text-[14px] text-on-surface-variant max-w-none font-light pb-6">
+    <p class="mt-8 text-[16px] text-on-surface-variant max-w-none font-light pb-6">
       <sup>*</sup>L'adhésion ne pourra être complette que lorsque les formulaires seront remplis intégralement, que vous nous aurez transmis l'attestation de santé ou certificat médical et que les règlements de licence et de cotisation seront à jour.
     </p>
     <span class="text-secondary font-label text-xs uppercase tracking-[0.3em] font-bold block mb-4">Adhésion</span>
@@ -1379,7 +1406,7 @@ PAGE 04 — INSCRIPTIONS
           <span class="absolute left-4 top-0 text-[150px] font-black text-primary/25 font-headline select-none">01</span>
           <div class="relative z-10 pl-48 mt-[10px]">
             <h3 class="text-4xl font-bold font-headline text-primary mb-4">Demande de Licence</h3>
-            <p class="text-on-surface-variant max-w-md">Complétez le formulaire numérique via notre portail sécurisé.</p>
+            <p class="text-on-surface-variant max-w-md">Complétez le formulaire sur le site de la Fédération.<br>Aucun paiement ne se fait sur le site, il se fera au club.<br><br><sup>*</sup>Aucune licence ne pourra êtrevalider par le club sans le règlement de celle-ci</p>
           </div>
         </div>
         <a href="https://moncompte.ffjudo.com/prise-licence" class="w-full lg:w-64 flex-shrink-0 bg-red-900 text-white p-6 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300 font-bold text-center block">
@@ -1410,7 +1437,7 @@ PAGE 04 — INSCRIPTIONS
           <span class="absolute left-4 top-0 text-[150px] font-black text-on-primary/25 font-headline select-none">03</span>
           <div class="relative z-10 pl-48 mt-[10px]">
             <h3 class="text-4xl font-bold font-headline text-on-primary mb-4">Cours d'essai</h3>
-            <p class="text-on-primary/80 max-w-md">Inscrivez-vous pour découvrir nos pratiques au dojo.</p>
+            <p class="text-on-primary/80 max-w-md">Inscrivez-vous pour découvrir nos pratiques au dojo lors d'un cours d'essai gratuit.<br><br><sup>*</sup>Pour la tenue pas besoin </p>
           </div>
         </div>
         <a href="#" onclick="openForm('essai'); return false;"
